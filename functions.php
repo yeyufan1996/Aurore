@@ -1,14 +1,14 @@
 <?php
 /**
- * Aurore functions and definitions.
+ * Sakura functions and definitions.
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package Aurore
+ * @package Sakura
  */
 
-define('AURORE_VERSION', wp_get_theme()->get('Version'));
-define('BUILD_VERSION', '1');
+define('SAKURA_VERSION', wp_get_theme()->get('Version'));
+define('BUILD_VERSION', '3');
 
 //ini_set('display_errors', true);
 //error_reporting(E_ALL);
@@ -174,21 +174,21 @@ add_action('after_setup_theme', 'akina_content_width', 0);
 /**
  * Enqueue scripts and styles.
  */
-function aurore_scripts()
+function sakura_scripts()
 {
     if (akina_option('jsdelivr_cdn_test')) {
-        wp_enqueue_script('js_lib', get_template_directory_uri() . '/cdn/js/lib.js', array(), AURORE_VERSION . akina_option('cookie_version', ''), true);
+        wp_enqueue_script('js_lib', get_template_directory_uri() . '/cdn/js/lib.js', array(), SAKURA_VERSION . akina_option('cookie_version', ''), true);
     } else {
-        wp_enqueue_script('js_lib', 'https://cdn.jsdelivr.net/gh/yeyufan1996/Aurore@' . AURORE_VERSION . '/cdn/js/lib.min.js', array(), AURORE_VERSION, true);
+        wp_enqueue_script('js_lib', 'https://cdn.jsdelivr.net/gh/mashirozx/Sakura@' . SAKURA_VERSION . '/cdn/js/lib.min.js', array(), SAKURA_VERSION, true);
     }
     if (akina_option('app_no_jsdelivr_cdn')) {
-        wp_enqueue_style('saukra_css', get_stylesheet_uri(), array(), AURORE_VERSION);
-        wp_enqueue_script('app', get_template_directory_uri() . '/js/sakura-app.js', array(), AURORE_VERSION, true);
+        wp_enqueue_style('saukra_css', get_stylesheet_uri(), array(), SAKURA_VERSION);
+        wp_enqueue_script('app', get_template_directory_uri() . '/js/sakura-app.js', array(), SAKURA_VERSION, true);
     } else {
-        wp_enqueue_style('saukra_css', 'https://cdn.jsdelivr.net/gh/yeyufan1996/Aurore@' . AURORE_VERSION . '/style.min.css', array(), AURORE_VERSION);
-        wp_enqueue_script('app', 'https://cdn.jsdelivr.net/gh/yeyufan1996/Aurore@' . AURORE_VERSION . '/js/sakura-app.min.js', array(), AURORE_VERSION, true);
+        wp_enqueue_style('saukra_css', 'https://cdn.jsdelivr.net/gh/mashirozx/Sakura@' . SAKURA_VERSION . '/style.min.css', array(), SAKURA_VERSION);
+        wp_enqueue_script('app', 'https://cdn.jsdelivr.net/gh/mashirozx/Sakura@' . SAKURA_VERSION . '/js/sakura-app.min.js', array(), SAKURA_VERSION, true);
     }
-    wp_enqueue_script('github_card', 'https://cdn.jsdelivr.net/github-cards/latest/widget.js', array(), AURORE_VERSION, true);
+    wp_enqueue_script('github_card', 'https://cdn.jsdelivr.net/github-cards/latest/widget.js', array(), SAKURA_VERSION, true);
 
     if (is_singular() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
@@ -220,8 +220,7 @@ function aurore_scripts()
         'gravatar_url' => $gravatar_url
     ));
 }
-add_action('wp_footer', 'theme_name_post_editor', 200);
-add_action('wp_enqueue_scripts', 'aurore_scripts');
+add_action('wp_enqueue_scripts', 'sakura_scripts');
 
 /**
  * load .php.
@@ -427,7 +426,7 @@ if (!function_exists('akina_comment_format')) {
 				<div class="comment-arrow">
 					<div class="main shadow">
 						<div class="profile">
-							<a href="<?php comment_author_url();?>" target="_blank" rel="nofollow"><?php echo str_replace('src=', 'src="https://cdn.yeyufan.cn/blog/img/trans.ajax-spinner-preloader.svg" onerror="imgError(this,1)" data-src=', get_avatar($comment->comment_author_email, '80', '', get_comment_author(), array('class' => array('lazyload')))); ?></a>
+							<a href="<?php comment_author_url();?>" target="_blank" rel="nofollow"><?php echo str_replace('src=', 'src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.0.2/img/svg/loader/trans.ajax-spinner-preloader.svg" onerror="imgError(this,1)" data-src=', get_avatar($comment->comment_author_email, '80', '', get_comment_author(), array('class' => array('lazyload')))); ?></a>
 						</div>
 						<div class="commentinfo">
 							<section class="commeta">
@@ -591,10 +590,10 @@ function get_the_link_items($id = null)
             }
 
             if (empty($bookmark->link_image)) {
-                $bookmark->link_image = 'https://cdn.yeyufan.cn/blog/img/Transparent_Akkarin.th.jpg';
+                $bookmark->link_image = 'https://view.moezx.cc/images/2017/12/30/Transparent_Akkarin.th.jpg';
             }
 
-            $output .= '<li class="link-item"><a class="link-item-inner effect-apollo" href="' . $bookmark->link_url . '" title="' . $bookmark->link_description . '" target="_blank" rel="friend"><img class="lazyload" onerror="imgError(this,1)" data-src="' . $bookmark->link_image . '" src="https://cdn.yeyufan.cn/blog/img/trans.ajax-spinner-preloader.svg"><span class="sitename">' . $bookmark->link_name . '</span><div class="linkdes">' . $bookmark->link_description . '</div></a></li>';
+            $output .= '<li class="link-item"><a class="link-item-inner effect-apollo" href="' . $bookmark->link_url . '" title="' . $bookmark->link_description . '" target="_blank" rel="friend"><img class="lazyload" onerror="imgError(this,1)" data-src="' . $bookmark->link_image . '" src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.0.2/img/svg/loader/trans.ajax-spinner-preloader.svg"><span class="sitename">' . $bookmark->link_name . '</span><div class="linkdes">' . $bookmark->link_description . '</div></a></li>';
         }
         $output .= '</ul>';
     }
@@ -812,7 +811,7 @@ function bolo_QTnextpage_arg1() {
 function custom_login()
 {
     //echo '<link rel="stylesheet" type="text/css" href="' . get_bloginfo('template_directory') . '/inc/login.css" />'."\n";
-    echo '<link rel="stylesheet" type="text/css" href="' . get_template_directory_uri() . '/inc/login.css?' . AURORE_VERSION . '" />' . "\n";
+    echo '<link rel="stylesheet" type="text/css" href="' . get_template_directory_uri() . '/inc/login.css?' . SAKURA_VERSION . '" />' . "\n";
     //echo '<script type="text/javascript" src="'.get_bloginfo('template_directory').'/js/jquery.min.js"></script>'."\n";
     echo '<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/jquery/jquery@1.9.0/jquery.min.js"></script>' . "\n";
 }
@@ -839,7 +838,7 @@ function custom_html()
     if (akina_option('login_bg')) {
         $loginbg = akina_option('login_bg');
     } else {
-        $loginbg = 'https://cdn.yeyufan.cn/blog/img/hd.jpg';
+        $loginbg = 'https://cdn.jsdelivr.net/gh/mashirozx/Sakura@3.2.7/images/hd.png';
     }
     echo '<script type="text/javascript" src="' . get_template_directory_uri() . '/js/login.js"></script>' . "\n";
     echo '<script type="text/javascript">' . "\n";
@@ -863,11 +862,50 @@ function custom_html()
 	  }
 	}
 	$(document).ready(function(){
+		$( \'<p><div id="verification-slider"><div id="slider"><div id="slider_bg"></div><span id="label">»</span><span id="labelTip">Slide to Verificate</span></div><input type="hidden" name="verification" value="verification" /></div><p>\' ).insertBefore( $( ".submit" ) );
+		$(\'form\').attr(\'onsubmit\',\'return verificationOK();\');
         $(\'h1 a\').attr(\'style\',\'background-image: url(' . akina_option('logo_img') . '); \');
 		$(".forgetmenot").replaceWith(\'<p class="forgetmenot">Remember Me<input name="rememberme" id="rememberme" value="forever" type="checkbox"><label for="rememberme" style="float: right;margin-top: 5px;transform: scale(2);margin-right: -10px;"></label></p>\');
 	});
 	</script>';
-    
+    echo '<script type="text/javascript">
+		var startTime = 0;
+		var endTime = 0;
+		var numTime = 0;
+		$(function () {
+			var slider = new SliderUnlock("#slider",{
+			successLabelTip : "OK"
+		},function(){
+			var sli_width = $("#slider_bg").width();
+			$(\'#verification-slider\').html(\'\').append(\'<input id="verification-ok" class="input" type="text" size="25" value="OK!" name="verification" disabled="true" />\');
+
+			endTime = nowTime();
+			numTime = endTime-startTime;
+			endTime = 0;
+			startTime = 0;
+			// 获取到滑动使用的时间 滑动的宽度
+			// alert( numTime );
+			// alert( sli_width );
+		});
+			slider.init();
+		})
+
+		/**
+		* 获取时间精确到毫秒
+		* @type
+		*/
+		function nowTime(){
+			var myDate = new Date();
+			var H = myDate.getHours();//获取小时
+			var M = myDate.getMinutes(); //获取分钟
+			var S = myDate.getSeconds();//获取秒
+			var MS = myDate.getMilliseconds();//获取毫秒
+			var milliSeconds = H * 3600 * 1000 + M * 60 * 1000 + S * 1000 + MS;
+			return milliSeconds;
+		}
+	</script>
+	<script type="text/javascript" src="' . get_template_directory_uri() . '/user/verification.js"></script>';
+}
 add_action('login_footer', 'custom_html');
 
 //Login message
@@ -950,7 +988,7 @@ function comment_mail_notify($comment_id)
         . trim($comment->comment_content) . '</div>
 
       <div style="text-align: center;">
-          <img src="https://cdn.yeyufan.cn/blog/img/hr.png" alt="hr" style="width:100%;
+          <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.4/img/other/hr.png" alt="hr" style="width:100%;
                                                                                                   margin:5px auto 5px auto;
                                                                                                   display: block;">
           <a style="text-transform: uppercase;
@@ -1031,9 +1069,9 @@ function comment_picture_support($content)
     $content = str_replace('http://', 'https://', $content); // 干掉任何可能的 http
     $content = str_replace('{UPLOAD}', 'https://i.loli.net/', $content);
     $content = str_replace('[/img][img]', '[/img^img]', $content);
-    $content = str_replace('[img]', '<br><img src="https://cdn.yeyufan.cn/blog/img/trans.ajax-spinner-preloader.svg" data-src="', $content);
+    $content = str_replace('[img]', '<br><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.0.2/img/svg/loader/trans.ajax-spinner-preloader.svg" data-src="', $content);
     $content = str_replace('[/img]', '" class="lazyload comment_inline_img" onerror="imgError(this)"><br>', $content);
-    $content = str_replace('[/img^img]', '" class="lazyload comment_inline_img" onerror="imgError(this)"><img src="https://cdn.yeyufan.cn/blog/img/trans.ajax-spinner-preloader.svg" data-src="', $content);
+    $content = str_replace('[/img^img]', '" class="lazyload comment_inline_img" onerror="imgError(this)"><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.0.2/img/svg/loader/trans.ajax-spinner-preloader.svg" data-src="', $content);
     return $content;
 }
 add_filter('comment_text', 'comment_picture_support');
@@ -1044,7 +1082,7 @@ add_filter('comment_text', 'comment_picture_support');
 add_filter('smilies_src', 'custom_smilies_src', 1, 10);
 function custom_smilies_src($img_src, $img, $siteurl)
 {
-    return 'https://cdn.yeyufan.cn/blog/img/' . $img;
+    return 'https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/' . $img;
 }
 // 简单遍历系统表情库，今后应考虑标识表情包名——使用增加的扩展名，同时保留原有拓展名
 // 还有一个思路是根据表情调用路径来判定<-- 此法最好！
@@ -1540,7 +1578,7 @@ function set_default_admin_color($user_id)
 // WordPress Custom Font @ Admin
 function custom_admin_open_sans_font()
 {
-    echo '<link href="https://fonts.loli.net/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">' . PHP_EOL;
+    echo '<link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">' . PHP_EOL;
     echo '<style>body, #wpadminbar *:not([class="ab-icon"]), .wp-core-ui, .media-menu, .media-frame *, .media-modal *{font-family:"Noto Serif SC","Source Han Serif SC","Source Han Serif","source-han-serif-sc","PT Serif","SongTi SC","MicroSoft Yahei",Georgia,serif !important;}</style>' . PHP_EOL;
 }
 add_action('admin_head', 'custom_admin_open_sans_font');
@@ -1549,7 +1587,7 @@ add_action('admin_head', 'custom_admin_open_sans_font');
 function custom_admin_open_sans_font_frontend_toolbar()
 {
     if (current_user_can('administrator')) {
-        echo '<link href="https://fonts.loli.net/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">' . PHP_EOL;
+        echo '<link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">' . PHP_EOL;
         echo '<style>#wpadminbar *:not([class="ab-icon"]){font-family:"Noto Serif SC","Source Han Serif SC","Source Han Serif","source-han-serif-sc","PT Serif","SongTi SC","MicroSoft Yahei",Georgia,serif !important;}</style>' . PHP_EOL;
     }
 }
@@ -1559,7 +1597,7 @@ add_action('wp_head', 'custom_admin_open_sans_font_frontend_toolbar');
 function custom_admin_open_sans_font_login_page()
 {
     if (stripos($_SERVER["SCRIPT_NAME"], strrchr(wp_login_url(), '/')) !== false) {
-        echo '<link href="https://fonts.loli.net/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">' . PHP_EOL;
+        echo '<link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">' . PHP_EOL;
         echo '<style>body{font-family:"Noto Serif SC","Source Han Serif SC","Source Han Serif","source-han-serif-sc","PT Serif","SongTi SC","MicroSoft Yahei",Georgia,serif !important;}</style>' . PHP_EOL;
     }
 }
@@ -1706,7 +1744,7 @@ function output_comments_qq_columns($column_name, $comment_id)
 add_filter('get_avatar', 'change_avatar', 10, 3);
 function change_avatar($avatar)
 {
-    global $comment, $sakura_privkey;
+    global $comment, $aurore_privkey;
     if ($comment) {
         if (get_comment_meta($comment->comment_ID, 'new_field_qq', true)) {
             $qq_number = get_comment_meta($comment->comment_ID, 'new_field_qq', true);
@@ -1717,8 +1755,8 @@ function change_avatar($avatar)
                 preg_match('/:\"([^\"]*)\"/i', $qqavatar, $matches);
                 return '<img src="' . $matches[1] . '" data-src="' . stripslashes($m[1]) . '" class="lazyload avatar avatar-24 photo" alt="😀" width="24" height="24" onerror="imgError(this,1)">';
             } else {
-                $iv = str_repeat($sakura_privkey, 2);
-                $encrypted = openssl_encrypt($qq_number, 'aes-128-cbc', $sakura_privkey, 0, $iv);
+                $iv = str_repeat($aurore_privkey, 2);
+                $encrypted = openssl_encrypt($qq_number, 'aes-128-cbc', $aurore_privkey, 0, $iv);
                 $encrypted = urlencode(base64_encode($encrypted));
                 return '<img src="' . rest_url("sakura/v1/qqinfo/avatar") . '?qq=' . $encrypted . '"class="lazyload avatar avatar-24 photo" alt="😀" width="24" height="24" onerror="imgError(this,1)">';
             }
@@ -1821,153 +1859,49 @@ add_action('pre_comment_on_post', 'allow_more_tag_in_comment');
 /*
  * 随机图
  */
-function create_sakura_table()
+function create_aurore_table()
 {
-    global $wpdb, $sakura_image_array, $sakura_privkey;
-    $sakura_table_name = $wpdb->base_prefix . 'sakura';
+    global $wpdb, $aurore_image_array, $aurore_privkey;
+    $aurore_table_name = $wpdb->base_prefix . 'aurore';
     require_once ABSPATH . "wp-admin/includes/upgrade.php";
-    dbDelta("CREATE TABLE IF NOT EXISTS `" . $sakura_table_name . "` (
+    dbDelta("CREATE TABLE IF NOT EXISTS `" . $aurore_table_name . "` (
         `mate_key` varchar(50) COLLATE utf8_bin NOT NULL,
         `mate_value` text COLLATE utf8_bin NOT NULL,
         PRIMARY KEY (`mate_key`)
         ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;");
     //default data
-    if (!$wpdb->get_var("SELECT COUNT(*) FROM $sakura_table_name WHERE mate_key = 'manifest_json'")) {
+    if (!$wpdb->get_var("SELECT COUNT(*) FROM $aurore_table_name WHERE mate_key = 'manifest_json'")) {
         $manifest = array(
             "mate_key" => "manifest_json",
             "mate_value" => file_get_contents(get_template_directory() . "/manifest/manifest.json"),
         );
-        $wpdb->insert($sakura_table_name, $manifest);
+        $wpdb->insert($aurore_table_name, $manifest);
     }
-    if (!$wpdb->get_var("SELECT COUNT(*) FROM $sakura_table_name WHERE mate_key = 'json_time'")) {
+    if (!$wpdb->get_var("SELECT COUNT(*) FROM $aurore_table_name WHERE mate_key = 'json_time'")) {
         $time = array(
             "mate_key" => "json_time",
             "mate_value" => date("Y-m-d H:i:s", time()),
         );
-        $wpdb->insert($sakura_table_name, $time);
+        $wpdb->insert($aurore_table_name, $time);
     }
-    if (!$wpdb->get_var("SELECT COUNT(*) FROM $sakura_table_name WHERE mate_key = 'privkey'")) {
+    if (!$wpdb->get_var("SELECT COUNT(*) FROM $aurore_table_name WHERE mate_key = 'privkey'")) {
         $privkey = array(
             "mate_key" => "privkey",
             "mate_value" => wp_generate_password(8),
         );
-        $wpdb->insert($sakura_table_name, $privkey);
+        $wpdb->insert($aurore_table_name, $privkey);
     }
-    //reduce sql query
-    $sakura_image_array = $wpdb->get_var("SELECT `mate_value` FROM  $sakura_table_name WHERE `mate_key`='manifest_json'");
-    $sakura_privkey = $wpdb->get_var("SELECT `mate_value` FROM  $sakura_table_name WHERE `mate_key`='privkey'");
+    $aurore_image_array = $wpdb->get_var("SELECT `mate_value` FROM  $aurore_table_name WHERE `mate_key`='manifest_json'");
+    $aurore_privkey = $wpdb->get_var("SELECT `mate_value` FROM  $aurore_table_name WHERE `mate_key`='privkey'");
 }
-add_action('after_setup_theme', 'create_sakura_table');
+add_action('after_setup_theme', 'create_aurore_table');
 
 //rest api支持
 function permalink_tip()
 {
     if ( !get_option('permalink_structure') ){
-        $msg = __('<b> For a better experience, please do not set <a href="/wp-admin/options-permalink.php"> permalink </a> as plain. To do this, you may need to configure <a href="https://www.wpdaxue.com/wordpress-rewriterule.html" target="_blank"> pseudo-static </a>. </ b>','sakura'); /*<b>为了更好的使用体验，请不要将<a href="/wp-admin/options-permalink.php">固定链接</a>设置为朴素。为此，您可能需要配置<a href="https://www.wpdaxue.com/wordpress-rewriterule.html" target="_blank">伪静态</a>。</b>*/
+        $msg = __('/*<b>为了更好的使用体验，请不要将<a href="/wp-admin/options-permalink.php">固定链接</a>设置为朴素。为此，您可能需要配置伪静态','aurore');
         echo '<div class="notice notice-success is-dismissible" id="scheme-tip"><p><b>' . $msg . '</b></p></div>';
     }
 }
 add_action('admin_notices', 'permalink_tip');
-//2020/10/20 Webp支持
-function mimvp_filter_mime_types( $array ) {
-
-    $array['webp'] = 'image/webp';
-
-    return $array;
-
-}
-
-add_filter( 'mime_types', 'mimvp_filter_mime_types', 10, 1 );
-function mimvp_file_is_displayable_image($result, $path) {
-
-    $info = @getimagesize( $path );
-
-    if($info['mime'] == 'image/webp') {
-
-        $result = true;
-
-    }
-
-    return $result;
-
-}
-
-add_filter( 'file_is_displayable_image', 'mimvp_file_is_displayable_image', 10, 2 );
-
-if ( ! function_exists( 'get_cravatar_url' ) ) {    /**     * 替换 Gravatar 头像为 Cravatar 头像     */    function get_cravatar_url( $url ) {        $sources = array(            'www.gravatar.com',            '0.gravatar.com',            '1.gravatar.com',            '2.gravatar.com',            'secure.gravatar.com',            'cn.gravatar.com',            'gravatar.com',        );        return str_replace( $sources, 'cravatar.cn', $url );    }    add_filter( 'um_user_avatar_url_filter', 'get_cravatar_url', 1 );    add_filter( 'bp_gravatar_url', 'get_cravatar_url', 1 );    add_filter( 'get_avatar_url', 'get_cravatar_url', 1 );}if ( ! function_exists( 'set_defaults_for_cravatar' ) ) {    /**     * 替换 WordPress 讨论设置中的默认头像     */    function set_defaults_for_cravatar( $avatar_defaults ) {        $avatar_defaults['gravatar_default'] = 'Cravatar 标志';        return $avatar_defaults;    }    add_filter( 'avatar_defaults', 'set_defaults_for_cravatar', 1 );}if ( ! function_exists( 'set_user_profile_picture_for_cravatar' ) ) {    /**     * 替换个人资料卡中的头像上传地址     */    function set_user_profile_picture_for_cravatar() {        return '您可以在 Cravatar 修改您的资料图片';    }    add_filter( 'user_profile_picture_description', 'set_user_profile_picture_for_cravatar', 1 );}
-
-//说说页面
-function shuoshuo_custom_init()
-{
-    $labels = array(
-        'name' => '说说',
-        'singular_name' => '说说',
-        'add_new' => '发表说说',
-        'add_new_item' => '发表说说',
-        'edit_item' => '编辑说说',
-        'new_item' => '新说说',
-        'view_item' => '查看说说',
-        'search_items' => '搜索说说',
-        'not_found' => '暂无说说',
-        'not_found_in_trash' => '没有已遗弃的说说',
-        'parent_item_colon' => '',
-        'menu_name' => '说说'
-    );
-    $args = array(
-        'labels' => $labels,
-        'public' => true,
-        'publicly_queryable' => true,
-        'show_ui' => true,
-        'show_in_menu' => true,
-        'query_var' => true,
-        'rewrite' => true,
-        'capability_type' => 'post',
-        'has_archive' => true,
-        'hierarchical' => false,
-        'menu_position' => null,
-        'supports' => array(
-            'title',
-            'editor',
-            'author',
-            'comments'
- 
-        )
-    );
-    register_post_type('shuoshuo', $args);
-}
-add_action('init', 'shuoshuo_custom_init');
-
-
-//添加老文章提示信息位于顶部
-function old_content_message($content)
-{
-    $modified = get_the_modified_time('U');
-    $current = current_time('timestamp');
-    $diffTime = ($current - $modified) / (60 * 60 * 24);
-    if ($diffTime > 365) {
-        $content = '<div class="warn">本文最后更新于' . get_the_modified_time('Y年n月j日') .
-            '，已超过 1 年没更新！内容可能已失效，请自行测试。</div>' . $content;
-    }
-    return $content;
-}
-add_filter('the_content', 'old_content_message');
-
-//去除上传图片限制
-add_filter('plupload_default_settings', function($defaults) {
-	$defaults['webp_upload_error'] = false;
-	return $defaults;
-}, 10, 1);
-
-add_filter('plupload_init', function($plupload_init) {
-	$plupload_init['webp_upload_error'] = false;
-	return $plupload_init;
-}, 10, 1);
-
-//去除Google字体
-function remove_google_fonts() {
-    wp_dequeue_style('open-sans');
-    wp_dequeue_style('roboto');
-    wp_dequeue_style('lora');
-}
-add_action( 'wp_enqueue_scripts', 'remove_google_fonts' );
-

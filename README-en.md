@@ -28,4 +28,4 @@ git pull
 
 
 ### Need a server?
-[![](https://www.vultr.com/media/banners/banner_728x90.png)](https://www.vultr.com/?ref=7674346)
+AWS Lightsail [TG](https://t.me/Suran9527)

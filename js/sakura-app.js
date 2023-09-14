@@ -1,10 +1,9 @@
 /*！
- * Aurore theme application bundle
- * @author Suran
- * @url https://yeyufan.cn
- * @date 2023.9.13
+ * Sakura theme application bundle
+ * @author Mashiro
+ * @url https://2heng.xin
+ * @date 2019.8.3
  */
-
 mashiro_global.variables = new function () {
     this.has_hls = false;
     this.skinSecter = true;
@@ -607,7 +606,7 @@ function coverVideoIni() {
         if (mashiro_global.variables.has_hls){
             loadHls();
         }else{
-            $.getScript("https://cdn.yeyufan.cn/blog/js/16.hls.js", function(){
+            $.getScript("https://cdn.jsdelivr.net/gh/mashirozx/Sakura@3.3.3/cdn/js/src/16.hls.js", function(){
                 loadHls();
                 mashiro_global.variables.has_hls = true;
               });
@@ -1072,8 +1071,8 @@ mashiro_global.ini.normalize();
 loadCSS(mashiro_option.jsdelivr_css_src);
 loadCSS(mashiro_option.entry_content_theme_src);
 loadCSS("https://at.alicdn.com/t/font_679578_qyt5qzzavdo39pb9.css");
-loadCSS("https://cdn.yeyufan.cn/blog/css/APlayer.min.css");
-loadCSS("https://cdn.yeyufan.cn/blog/css/google.css");
+loadCSS("https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css");
+loadCSS("https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC");
 (function webpackUniversalModuleDefinition(b, a) {
     if (typeof exports === "object" && typeof module === "object") {
         module.exports = a()
@@ -1654,7 +1653,7 @@ var home = location.href,
                                 scrollTop: tempScrollTop + 100
                             }, 666)
                         } else {
-                            $("#pagination").html("<span>我知道你还想翻，但是真的没有了...</span>");
+                            $("#pagination").html("<span>很高兴你翻到这里，但是真的没有了...</span>");
                         }
                     }
                 });
@@ -1954,13 +1953,9 @@ $(function () {
     };
     $(document).on("click", ".specsZan", function () {
         $(this).postLike();
-    })
-    console.log(" %c The blog was last updated: 2023/9/1 ", "color: #ffffff; background: #0092ee; padding:5px 0;border-radius:5px;"), console.log("\n %c ⚡Theme:Sakura Author's Blog:https://2heng.xin/  Mod By Suran  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;")
-    var logo = '%c💤Suran\'%cBlog';
-    console.info(
-        logo,
-        'color: #ffffff; background: #000000; padding:5px 10px 5px 10px;font-size:40px;border-radius:12px 0 0 12px;', 'color: #000000; background: #FE9A00; padding:5px 10px;font-size:40px;border-radius:0 12px 12px 0;'
-    );
+    });
+    console.log("%c Mashiro %c", "background:#24272A; color:#ffffff", "", "https://2heng.xin/");
+    console.log("%c Github %c", "background:#24272A; color:#ffffff", "", "https://github.com/mashirozx");
 });
 var isWebkit = navigator.userAgent.toLowerCase().indexOf('webkit') > -1,
     isOpera = navigator.userAgent.toLowerCase().indexOf('opera') > -1,
@@ -1981,4 +1976,3 @@ if ((isWebkit || isOpera || isIe) && document.getElementById && window.addEventL
         }
     }, false);
 }
-

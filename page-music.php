@@ -1,7 +1,7 @@
 <?php 
 
 /**
- Template Name: music
+ Template Name: links
  */
 
 get_header(); 

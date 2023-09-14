@@ -1,6 +1,6 @@
 <?php
 
-namespace Sakura\API;
+namespace Aurore\API;
 
 class Images
 {
@@ -150,8 +150,8 @@ class Images
         } elseif (akina_option('cover_cdn_options') == "type_3") {
             $imgurl = akina_option('cover_cdn');
         } else {
-            global $sakura_image_array;
-            $img_array = json_decode($sakura_image_array, true);
+            global $aurore_image_array;
+            $img_array = json_decode($aurore_image_array, true);
             $img = array_rand($img_array);
             $img_domain = akina_option('cover_cdn') ? akina_option('cover_cdn') : get_template_directory_uri();
             if (strpos($_SERVER['HTTP_ACCEPT'], 'image/webp') !== false) {

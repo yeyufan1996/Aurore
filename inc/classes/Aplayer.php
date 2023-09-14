@@ -1,6 +1,6 @@
 <?php
 
-namespace Sakura\API;
+namespace Aurore\API;
 
 class Aplayer
 {

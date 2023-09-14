@@ -1,4 +1,4 @@
-﻿Aurore🌌: 夜与凡博客主题
+﻿﻿Aurore🌌: 夜与凡博客主题
 ===
 
 中文 | [Engilsh](README-en.md)
@@ -19,4 +19,4 @@ DIY 的时候建议采用[子主题](https://github.com/mashirozx/Sakura/tree/ch
 
 
 ### 需要服务器吗？
-提供付费AWS LightSail租机服务
+Offer AWS Lightsail service - Contact  [TG](https://t.me/Suran9527)

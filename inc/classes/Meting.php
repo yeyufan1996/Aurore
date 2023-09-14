@@ -9,7 +9,7 @@
  * Released under the MIT license
  */
 
-namespace Sakura\API;
+namespace Aurore\API;
 
 class Meting
 {

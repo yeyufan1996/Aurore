@@ -1270,6 +1270,14 @@ msgstr ""
 msgid "Check to enable, display the user's location info"
 msgstr ""
 
+#: options.php:877
+msgid "Enable disqus"
+msgstr ""
+
+#: options.php:878
+msgid "Enable disqus for comment"
+msgstr ""
+
 #: options.php:884
 msgid "Time Zone adjustment"
 msgstr ""

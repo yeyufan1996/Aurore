@@ -114,7 +114,7 @@ if ( akina_option('toggle-menu') == 'no') { ?>
 .comments .comments-hidden {display:none !important;}
 <?php } // comments ?>
 <?php 
-$image_api = 'background-image: url("'.rest_url('sakura/v1/image/cover').'");';
+$image_api = 'background-image: url("'.rest_url('aurore/v1/image/cover').'");';
 $bg_style = akina_option('focus_height') ? 'background-position: center center;background-attachment: inherit;' : '';
 ?>
 .centerbg{<?php echo $image_api.$bg_style ?>background-position: center center;background-attachment: inherit;}

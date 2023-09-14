@@ -62,7 +62,7 @@
 						'label_submit' => __('BiuBiuBiu~', 'sakura'),
 						'comment_field' => '<p style="font-style:italic"><a href="https://segmentfault.com/markdown" target="_blank"><i class="iconfont icon-markdown" style="color:#000"></i></a> Markdown Supported while <i class="fa fa-code" aria-hidden="true"></i> Forbidden</p><div class="comment-textarea"><textarea placeholder="' . __("You are a surprise that I will only meet once in my life", "sakura") . ' ..." name="comment" class="commentbody" id="comment" rows="5" tabindex="4"></textarea><label class="input-label">' . __("You are a surprise that I will only meet once in my life", "sakura") . ' ...</label></div>
                         <div id="upload-img-show"></div>
-                        <!--插入表情面板-->
+                        <!--插入表情面版-->
                         <p id="emotion-toggle" class="no-select">
                             <span class="emotion-toggle-off">' . __("Click me OωO", "sakura")/*戳我试试 OωO*/ . '</span>
                             <span class="emotion-toggle-on">' . __("Woooooow ヾ(≧∇≦*)ゝ", "sakura")/*嘿嘿嘿 ヾ(≧∇≦*)ゝ*/ . '</span>
@@ -84,7 +84,7 @@
                             </div>
                             <div class="tieba-container motion-container" style="display:none;">' . push_smilies() . '</div>
                         </div>
-                        <!--表情面板完-->',
+                        <!--表情面版完-->',
 						'comment_notes_after' => '',
 						'comment_notes_before' => '',
 						'fields' => apply_filters( 'comment_form_default_fields', array(

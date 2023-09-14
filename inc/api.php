@@ -9,47 +9,47 @@ include_once('classes/Cache.php');
 include_once('classes/Images.php');
 include_once('classes/QQ.php');
 
-use Sakura\API\Images;
-use Sakura\API\QQ;
-use Sakura\API\Cache;
+use Aurore\API\Images;
+use Aurore\API\QQ;
+use Aurore\API\Cache;
 
 /**
  * Router
  */
 add_action('rest_api_init', function () {
-    register_rest_route('sakura/v1', '/image/upload', array(
+    register_rest_route('aurore/v1', '/image/upload', array(
         'methods' => 'POST',
         'callback' => 'upload_image',
     ));
-    register_rest_route('sakura/v1', '/cache_search/json', array(
+    register_rest_route('aurore/v1', '/cache_search/json', array(
         'methods' => 'GET',
         'callback' => 'cache_search_json',
     ));
-    register_rest_route('sakura/v1', '/image/cover', array(
+    register_rest_route('aurore/v1', '/image/cover', array(
         'methods' => 'GET',
         'callback' => 'cover_gallery',
     ));
-    register_rest_route('sakura/v1', '/image/feature', array(
+    register_rest_route('aurore/v1', '/image/feature', array(
         'methods' => 'GET',
         'callback' => 'feature_gallery',
     ));
-    register_rest_route('sakura/v1', '/database/update', array(
+    register_rest_route('aurore/v1', '/database/update', array(
         'methods' => 'GET',
         'callback' => 'update_database',
     ));
-    register_rest_route('sakura/v1', '/qqinfo/json', array(
+    register_rest_route('aurore/v1', '/qqinfo/json', array(
         'methods' => 'GET',
         'callback' => 'get_qq_info',
     ));
-    register_rest_route('sakura/v1', '/qqinfo/avatar', array(
+    register_rest_route('aurore/v1', '/qqinfo/avatar', array(
         'methods' => 'GET',
         'callback' => 'get_qq_avatar',
     ));
-    register_rest_route('sakura/v1', '/bangumi/bilibili', array(
+    register_rest_route('aurore/v1', '/bangumi/bilibili', array(
         'methods' => 'POST',
         'callback' => 'bgm_bilibili',
     ));
-    register_rest_route('sakura/v1', '/meting/aplayer', array(
+    register_rest_route('aurore/v1', '/meting/aplayer', array(
         'methods' => 'GET',
         'callback' => 'meting_aplayer',
     ));
@@ -66,7 +66,7 @@ function upload_image(WP_REST_Request $request) {
      * curl \
      *   -F "filecomment=This is an img file" \
      *   -F "cmt_img_file=@screenshot.jpg" \
-     *   https://dev.2heng.xin/wp-json/sakura/v1/image/upload
+     *   https://dev.2heng.xin/wp-json/aurore/v1/image/upload
      */
     // $file = $request->get_file_params();
     if (!check_ajax_referer('wp_rest', '_wpnonce', false)) {
@@ -104,7 +104,7 @@ function upload_image(WP_REST_Request $request) {
 
 /*
  * 随机封面图 rest api
- * @rest api接口路径：https://sakura.2heng.xin/wp-json/sakura/v1/image/cover
+ * @rest api接口路径：https://sakura.2heng.xin/wp-json/aurore/v1/image/cover
  */
 function cover_gallery() {
     $imgurl = Images::cover_gallery();
@@ -117,7 +117,7 @@ function cover_gallery() {
 
 /*
  * 随机文章特色图 rest api
- * @rest api接口路径：https://sakura.2heng.xin/wp-json/sakura/v1/image/feature
+ * @rest api接口路径：https://sakura.2heng.xin/wp-json/aurore/v1/image/feature
  */
 function feature_gallery() {
     $imgurl = Images::feature_gallery();
@@ -130,7 +130,7 @@ function feature_gallery() {
 
 /*
  * update database rest api
- * @rest api接口路径：https://sakura.2heng.xin/wp-json/sakura/v1/database/update
+ * @rest api接口路径：https://sakura.2heng.xin/wp-json/aurore/v1/database/update
  */
 function update_database() {
     if (akina_option('cover_cdn_options') == "type_1") {
@@ -144,7 +144,7 @@ function update_database() {
 
 /*
  * 定制实时搜索 rest api
- * @rest api接口路径：https://sakura.2heng.xin/wp-json/sakura/v1/cache_search/json
+ * @rest api接口路径：https://sakura.2heng.xin/wp-json/aurore/v1/cache_search/json
  * @可在cache_search_json()函数末尾通过设置 HTTP header 控制 json 缓存时间
  */
 function cache_search_json() {
@@ -170,7 +170,7 @@ function cache_search_json() {
 
 /**
  * QQ info
- * https://sakura.2heng.xin/wp-json/sakura/v1/qqinfo/json
+ * https://sakura.2heng.xin/wp-json/aurore/v1/qqinfo/json
  */
 function get_qq_info(WP_REST_Request $request) {
     if (!check_ajax_referer('wp_rest', '_wpnonce', false)) {
@@ -197,7 +197,7 @@ function get_qq_info(WP_REST_Request $request) {
 
 /**
  * QQ头像链接解密
- * https://sakura.2heng.xin/wp-json/sakura/v1/qqinfo/avatar
+ * https://sakura.2heng.xin/wp-json/aurore/v1/qqinfo/avatar
  */
 function get_qq_avatar() {
     $encrypted = $_GET["qq"];
