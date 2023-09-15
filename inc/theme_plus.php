@@ -307,7 +307,7 @@ function the_headPattern(){
     $t .= ' <span class="cat-des">'.$des.'</span>';
   }elseif(is_search()){
     $full_image_url = get_random_bg_url();
-    $t .= '<h1 class="entry-title search-title"> '.sprintf( __( "Search results for \" %s \"","sakura" ), get_search_query()) ./*关于“ '.get_search_query().' ”的搜索结果*/'</h1>';
+    $t .= '<h1 class="entry-title search-title"> '.sprintf( __( "搜索结果","aurore" ), get_search_query()) ./**/'</h1>';
   }
   if(akina_option('patternimg')) $full_image_url = false;
   if(!is_home() && $full_image_url) : ?>

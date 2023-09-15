@@ -17,7 +17,7 @@ get_header(); ?>
 			<?php if (akina_option('patternimg') || !get_random_bg_url()) { ?>
 				<header class="page-header">
 					<h1 class="page-title">
-						<?php printf(__('search result: %s', 'sakura') /*搜索结果*/, '<span>' . get_search_query() . '</span>'); ?>
+						<?php printf(__('搜索结果: %s', 'aurore'), '<span>' . get_search_query() . '</span>'); ?>
 					</h1>
 				</header>
 			<?php } ?>

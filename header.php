@@ -43,7 +43,7 @@ S:::::::::::::::SS   uu::::::::uu:::ur:::::r           a::::::::::aa:::a n::::n 
 		if ($site_description && (is_home() || is_front_page()))
 			echo " - $site_description";
 		if ($paged >= 2 || $page >= 2)
-			echo ' - ' . sprintf(__('page %s ', 'sakura'), max($paged, $page)); /*第 %s 页*/?>
+			echo ' - ' . sprintf(__('第 %s 页 ', 'aurore'), max($paged, $page)); ?>
 	</title>
 	<?php
 	if (akina_option('akina_meta') == true) {
@@ -82,7 +82,7 @@ S:::::::::::::::SS   uu::::::::uu:::ur:::::r           a::::::::::aa:::a n::::n 
 	<meta http-equiv="x-dns-prefetch-control" content="on">
 	<?php wp_head(); ?>
 	<script type="text/javascript">
-		if (!!window.ActiveXObject || "ActiveXObject" in window) { //判断是否IE浏览器?
+		if (!!window.ActiveXObject || "ActiveXObject" in window) {
 			alert('朋友，IE浏览器未适配哦~\n如果是 360、QQ 等双核浏览器，请关闭 IE 模式！');
 		}
 	</script>

@@ -56,11 +56,10 @@ add_action('rest_api_init', function () {
 });
 
 /**
- * Image uploader response
+ * 图片上传
  */
 function upload_image(WP_REST_Request $request) {
     // see: https://developer.wordpress.org/rest-api/requests/
-
     // handle file params $file === $_FILES
     /**
      * curl \
@@ -73,8 +72,8 @@ function upload_image(WP_REST_Request $request) {
         $output = array('status' => 403,
             'success' => false,
             'message' => 'Unauthorized client.',
-            'link' => "https://view.moezx.cc/images/2019/11/14/step04.md.png",
-            'proxy' => akina_option('cmt_image_proxy') . "https://view.moezx.cc/images/2019/11/14/step04.md.png",
+            'link' => "https://cdn.yeyufan.cn/blog/img/Unauthorized.png",
+            'proxy' => akina_option('cmt_image_proxy') . "https://cdn.yeyufan.cn/blog/img/Unauthorized.png",
         );
         $result = new WP_REST_Response($output, 403);
         $result->set_headers(array('Content-Type' => 'application/json'));
@@ -104,7 +103,7 @@ function upload_image(WP_REST_Request $request) {
 
 /*
  * 随机封面图 rest api
- * @rest api接口路径：https://sakura.2heng.xin/wp-json/aurore/v1/image/cover
+ * @rest api接口路径：https://blog.yeyufan.cn/wp-json/aurore/v1/image/cover
  */
 function cover_gallery() {
     $imgurl = Images::cover_gallery();
@@ -117,7 +116,7 @@ function cover_gallery() {
 
 /*
  * 随机文章特色图 rest api
- * @rest api接口路径：https://sakura.2heng.xin/wp-json/aurore/v1/image/feature
+ * @rest api接口路径：https://blog.yeyufan.cn/wp-json/aurore/v1/image/feature
  */
 function feature_gallery() {
     $imgurl = Images::feature_gallery();
@@ -130,7 +129,7 @@ function feature_gallery() {
 
 /*
  * update database rest api
- * @rest api接口路径：https://sakura.2heng.xin/wp-json/aurore/v1/database/update
+ * @rest api接口路径：https://blog.yeyufan.cn/wp-json/aurore/v1/database/update
  */
 function update_database() {
     if (akina_option('cover_cdn_options') == "type_1") {
@@ -144,7 +143,7 @@ function update_database() {
 
 /*
  * 定制实时搜索 rest api
- * @rest api接口路径：https://sakura.2heng.xin/wp-json/aurore/v1/cache_search/json
+ * @rest api接口路径：https://blog.yeyufan.cn/wp-json/aurore/v1/cache_search/json
  * @可在cache_search_json()函数末尾通过设置 HTTP header 控制 json 缓存时间
  */
 function cache_search_json() {
@@ -170,7 +169,7 @@ function cache_search_json() {
 
 /**
  * QQ info
- * https://sakura.2heng.xin/wp-json/aurore/v1/qqinfo/json
+ * https://blog.yeyufan.cn/wp-json/aurore/v1/qqinfo/json
  */
 function get_qq_info(WP_REST_Request $request) {
     if (!check_ajax_referer('wp_rest', '_wpnonce', false)) {
@@ -197,7 +196,7 @@ function get_qq_info(WP_REST_Request $request) {
 
 /**
  * QQ头像链接解密
- * https://sakura.2heng.xin/wp-json/aurore/v1/qqinfo/avatar
+ * https://blog.yeyufan.cn/wp-json/aurore/v1/qqinfo/avatar
  */
 function get_qq_avatar() {
     $encrypted = $_GET["qq"];
@@ -248,7 +247,7 @@ function meting_aplayer() {
         );
         $response = new WP_REST_Response($output, 403);
     } else {
-        $Meting_API = new \Sakura\API\Aplayer();
+        $Meting_API = new \Aurore\API\Aplayer();
         $data = $Meting_API->get_data($type, $id);
         if ($type === 'playlist') {
             $response = new WP_REST_Response($data, 200);

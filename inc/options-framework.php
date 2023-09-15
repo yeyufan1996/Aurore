@@ -4,14 +4,12 @@ add_action('init', 'optionsframework_rolescheck');
 function optionsframework_rolescheck()
 {
 	if (current_user_can('edit_theme_options')) {
-		// If the user can edit theme options, let the fun begin!
 		add_action('admin_menu', 'optionsframework_add_page');
 		add_action('admin_init', 'optionsframework_init');
 		add_action('wp_before_admin_bar_render', 'optionsframework_adminbar');
 	}
 }
 
-/* Loads the file for option sanitization */
 
 add_action('init', 'optionsframework_load_sanitization');
 
@@ -19,16 +17,6 @@ function optionsframework_load_sanitization()
 {
 	require_once dirname(__FILE__) . '/options-sanitize.php';
 }
-
-/*
- * Creates the settings in the database by looping through the array
- * we supplied in options.php.  This is a neat way to do it since
- * we won't have to save settings for headers, descriptions, or arguments.
- *
- * Read more about the Settings API in the WordPress codex:
- * http://codex.wordpress.org/Settings_API
- *
- */
 
 function optionsframework_init()
 {
@@ -92,16 +80,6 @@ function optionsframework_page_capability($capability)
 	return 'edit_theme_options';
 }
 
-/*
- * Adds default options to the database if they aren't already present.
- * May update this later to load only on plugin activation, or theme
- * activation since most people won't be editing the options.php
- * on a regular basis.
- *
- * http://codex.wordpress.org/Function_Reference/add_option
- *
- */
-
 function optionsframework_setdefaults()
 {
 
@@ -110,13 +88,6 @@ function optionsframework_setdefaults()
 	// Gets the unique option id
 	$option_name = $optionsframework_settings['id'];
 
-	/*
-	 * Each theme will hopefully have a unique id, and all of its options saved
-	 * as a separate option set.  We need to track all of these option sets so
-	 * it can be easily deleted if someone wishes to remove the plugin and
-	 * its associated data.  No need to clutter the database.
-	 *
-	 */
 
 	if (isset($optionsframework_settings['knownoptions'])) {
 		$knownoptions = $optionsframework_settings['knownoptions'];
@@ -142,16 +113,6 @@ function optionsframework_setdefaults()
 	}
 }
 
-/* Define menu options (still limited to appearance section)
- *
- * Examples usage:
- *
- * add_filter( 'optionsframework_menu', function($menu) {
- *     $menu['page_title'] = 'Hello Options';
- *	   $menu['menu_title'] = 'Hello Options';
- *     return $menu;
- * });
- */
 
 function optionsframework_menu_settings()
 {
@@ -226,17 +187,7 @@ function of_admin_head()
 	do_action('optionsframework_custom_scripts');
 }
 
-/*
- * Builds out the options panel.
- *
- * If we were using the Settings API as it was likely intended we would use
- * do_settings_sections here.  But as we don't want the settings wrapped in a table,
- * we'll call our own custom optionsframework_fields.  See options-interface.php
- * for specifics on how each individual field is generated.
- *
- * Nonces are provided using the settings_fields()
- *
- */
+
 
 if (!function_exists('optionsframework_page')):
 	function optionsframework_page()
@@ -256,10 +207,10 @@ if (!function_exists('optionsframework_page')):
 						<?php optionsframework_fields(); /* Settings */?>
 						<div id="optionsframework-submit">
 							<input type="submit" class="button-primary" name="update"
-								value="<?php _e('Save', 'sakura'); ?>" />
+								value="<?php _e('保存', 'aurore'); ?>" />
 							<input type="submit" class="reset-button button-secondary" name="reset"
-								value="<?php esc_attr_e('Restore default', 'sakura'); ?>"
-								onclick="return confirm( '<?php print esc_js(__('All setting will be lost, sure?', 'sakura')); ?>' );" />
+								value="<?php esc_attr_e('还原默认设置', 'aurore'); ?>"
+								onclick="return confirm( '<?php print esc_js(__('所有设置都会被还原，确定吗？', 'aurore')); ?>' );" />
 							<div class="clear"></div>
 						</div>
 					</form>

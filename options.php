@@ -1,6 +1,4 @@
 <?php
-
-
 function optionsframework_option_name()
 {
     $themename = wp_get_theme();
@@ -41,7 +39,7 @@ function optionsframework_options()
     // 背景默认值
     $background_defaults = array(
         'color' => '',
-        'image' => 'https://cdn.yeyufan.cn/blog/img/default-bg.jpg',
+        'image' => 'https://cdn.yeyufan.cn/blog/img/default-bg.webp',
         'repeat' => 'repeat',
         'position' => 'top center',
         'attachment' => 'scroll'
@@ -121,7 +119,7 @@ function optionsframework_options()
     );
 
     $options[] = array(
-        'name' => __('主题菜单透明度', 'aurore'),
+        'name' => __('切换主题菜单透明度', 'aurore'),
         'desc' => __('调整主题菜单透明度，填写0到1之间的小数，值越小，越透明。默认值为 0.8', 'aurore'),
         'id' => 'sakura_skin_alpha',
         'std' => '0.8',
@@ -161,7 +159,7 @@ function optionsframework_options()
 
     $options[] = array(
         'name' => __('网站左上角LOGO', 'aurore'),
-        'desc' => __('最佳高度 40px。', 'aurore'),
+        'desc' => __('最佳高度40px。', 'aurore'),
         'id' => 'akina_logo',
         'type' => 'upload'
     );
@@ -243,7 +241,7 @@ function optionsframework_options()
         'std' => "type_1",
         'type' => "select",
         'options' => array(
-            'type_1' => __('跟随第一屏封面图', 'aurore'),   
+            'type_1' => __('跟随第一屏封面图', 'aurore'),
             'type_2' => __('外部随机图API', 'aurore'),
         )
     );
@@ -379,6 +377,34 @@ function optionsframework_options()
     );
 
     $options[] = array(
+        'name' => __('开启鼠标点击特效', 'options_click'),
+        'desc' => __('默认关闭，勾选开启', 'options_click'),
+        'id' => 'canvas_click',
+        'std' => '0',
+        'type' => 'checkbox'
+    );
+    $options[] = array(
+        'name' => __('开启蜂窝背景动效', 'options_framework_theme'),
+        'desc' => __('默认关闭，勾选开启', 'options_framework_theme'),
+        'id' => 'canvas_nest',
+        'std' => '0',
+        'type' => 'checkbox'
+    );
+
+    $options[] = array(
+        'name' => __('开启首屏底部动画', 'akina'),
+        'desc' => __('默认底部没有动画', 'akina'),
+        'id' => 'focus_canvas_animinte',
+        'std' => "animinte-nothing",
+        'type' => "radio",
+        'options' => array(
+            'animinte-nothing' => __('没有动画', ''),
+            'waveloop' => __('波浪动画', ''),
+            'bubble' => __('气泡动画', '')
+        )
+    );
+
+    $options[] = array(
         'name' => __('社交信息', 'aurore'),
         'desc' => __('默认开启，勾选关闭，显示头像、签名', 'aurore'),
         'id' => 'focus_infos',
@@ -415,25 +441,21 @@ function optionsframework_options()
         'desc' => sprintf(__('填写 manifest 路径，更多信息请参考<a href="https://github.com/yeyufan1996/Aurore/wiki/options">Wiki</a>,，如果你在上面选择了webp优化，点击<a href = "%s">这里</a>更新 manifest', 'aurore'), rest_url('aurore/v1/database/update')),
         /**/
         'id' => 'cover_cdn',
-        'std' => 'https://cdn.jsdelivr.net/gh/mashirozx/sakura@3.3.3',
+        'std' => 'https://cdn.yeyufan.cn/blog',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('full-screen display', 'aurore'),
-        /*全屏显示*/
-        'desc' => __('Default on, check off', 'aurore'),
-        /*默认开启，勾选关闭*/
+        'name' => __('全屏显示', 'aurore'),
+        'desc' => __('默认开启，勾选关闭', 'aurore'),
         'id' => 'focus_height',
         'std' => '0',
         'type' => 'checkbox'
     );
 
     $options[] = array(
-        'name' => __('Enable video', 'aurore'),
-        /*开启视频*/
-        'desc' => __('Check on', 'aurore'),
-        /*勾选开启*/
+        'name' => __('开启视频', 'aurore'),
+        'desc' => __('勾选开启', 'aurore'),
         'id' => 'focus_amv',
         'std' => '0',
         'type' => 'checkbox'
@@ -441,202 +463,161 @@ function optionsframework_options()
 
     $options[] = array(
         'name' => __('Live', 'aurore'),
-        'desc' => __('Check to enable, the video will continue to play automatically, you need to enable Pjax', 'aurore'),
-        /*勾选开启，视频自动续播，需要开启Pjax功能*/
+        'desc' => __('勾选开启，视频自动续播，需要在其他里开启Pjax功能', 'aurore'),
         'id' => 'focus_mvlive',
         'std' => '0',
         'type' => 'checkbox'
     );
 
     $options[] = array(
-        'name' => __('Video address', 'aurore'),
-        /*视频地址*/
-        'desc' => __('The source address of the video, the address is spliced below the video name, the slash is not required at the end of the address', 'aurore'),
-        /*视频的来源地址，该地址拼接下面的视频名，地址尾部不需要加斜杠*/
+        'name' => __('视频地址', 'aurore'),
+        'desc' => __('视频的来源地址，该地址拼接下面的视频名，地址尾部不需要加斜杠', 'aurore'),
         'id' => 'amv_url',
         'std' => '',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Video name', 'aurore'),
-        /*视频名称*/
-        'desc' => __('abc.mp4, just fill in the video file name abc, multiple videos separated by commas such as abc, efg, do not care about the order, because the loading is random extraction', 'aurore'),
-        /*abc.mp4 ，只需要填写视频文件名 abc 即可，多个用英文逗号隔开如 abc,efg ，无需在意顺序，因为加载是随机的抽取的 */
+        'name' => __('视频名称', 'aurore'),
+        'desc' => __('abc.mp4 ，只需要填写视频文件名 abc 即可，多个用英文逗号隔开如 abc,efg ，无需在意顺序，因为加载是随机的抽取的', 'aurore'),
         'id' => 'amv_title',
         'std' => '',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Background image filter', 'aurore'),
-        /*背景图滤镜*/
+        'name' => __('背景图滤镜', 'aurore'),
         'id' => 'focus_img_filter',
         'std' => "filter-nothing",
         'type' => "radio",
         'options' => array(
-            'filter-nothing' => __('Nothing', 'aurore'),
-            /*无*/
-            'filter-undertint' => __('Undertint', 'aurore'),
-            /*浅色*/
-            'filter-dim' => __('Dim', 'aurore'),
-            /*暗淡*/
-            'filter-grid' => __('Grid', 'aurore'),
-            /*网格*/
-            'filter-dot' => __('Dot', 'aurore'),
-            /*点点*/
+            'filter-nothing' => __('无', 'aurore'),
+            'filter-undertint' => __('浅色', 'aurore'),
+            'filter-dim' => __('暗淡', 'aurore'),
+            'filter-grid' => __('网格', 'aurore'),
+            'filter-dot' => __('点点', 'aurore'),
         )
     );
 
     $options[] = array(
-        'name' => __('Whether to turn on the top-feature', 'aurore'),
-        /*是否开启聚焦*/
-        'desc' => __('Default on', 'aurore'),
+        'name' => __('是否开启聚焦图', 'aurore'),
+        'desc' => __('勾选开启', 'aurore'),
         'id' => 'top_feature',
         'std' => '1',
         'type' => 'checkbox'
     );
 
     $options[] = array(
-        'name' => __('Top-feature style', 'aurore'),
-        /*聚焦样式*/
+        'name' => __('聚焦样式', 'aurore'),
         'id' => 'top_feature_style',
         'std' => "left_and_right",
         'type' => "radio",
         'options' => array(
-            'left_and_right' => __('Alternate left and right', 'aurore'),
-            /*左右交替*/
-            'bottom_to_top' => __('From bottom to top', 'aurore'),
-            /*从下往上*/
+            'left_and_right' => __('左右交替', 'aurore'),
+            'bottom_to_top' => __('从下往上', 'aurore'),
         )
     );
 
     $options[] = array(
-        'name' => __('Top-feature title', 'aurore'),
-        /*聚焦标题*/
-        'desc' => __('Default is Discovery, you can also change it to other, of course you can\'t use it as an advertisement!Not allowed!!', 'aurore'),
-        /*默认为聚焦，你也可以修改为其他，当然不能当广告用！不允许！！*/
+        'name' => __('聚焦标题', 'aurore'),
+        'desc' => __('默认为聚焦，你也可以修改为其他', 'aurore'),
         'id' => 'feature_title',
-        'std' => 'Discovery',
+        'std' => '海上升明月',
         'class' => 'mini',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Top-feature 1 image', 'aurore'),
-        /*聚焦图一*/
-        'desc' => __('size 257px*160px', 'aurore'),
-        /*尺寸257px*160px*/
+        'name' => __('聚焦图一', 'aurore'),
+        'desc' => __('尺寸257px*160px', 'aurore'),
         'id' => 'feature1_img',
         'std' => $imagepath . '/temp.png',
         'type' => 'upload'
     );
 
     $options[] = array(
-        'name' => __('Top-feature 1 title', 'aurore'),
-        /*聚焦图一标题*/
-        'desc' => __('Top-feature 1 title', 'aurore'),
-        /*聚焦图一标题*/
+        'name' => __('聚焦图一标题', 'aurore'),
+        'desc' => __('聚焦图一标题', 'aurore'),
         'id' => 'feature1_title',
-        'std' => 'feature1',
+        'std' => '聚焦图一标题',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Top-feature 1 description', 'aurore'),
-        /*聚焦图一描述*/
-        'desc' => __('Top-feature 1 description', 'aurore'),
-        /*聚焦图一描述*/
+        'name' => __('聚焦图一描述', 'aurore'),
+        'desc' => __('聚焦图一描述', 'aurore'),
         'id' => 'feature1_description',
-        'std' => 'Description goes here 1',
+        'std' => '聚焦图一描述',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Top-feature 1 link', 'aurore'),
-        /*聚焦图一链接*/
-        'desc' => __('Top-feature 1 link', 'aurore'),
-        /*聚焦图一链接*/
-        'id' => 'feature1_link',
+        'name' => __('聚焦图一链接', 'aurore'),
+        'desc' => __('聚焦图一链接', 'aurore'),
+        'id' => '聚焦图一链接',
         'std' => '#',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Top-feature 2 image', 'aurore'),
-        /*聚焦图二*/
-        'desc' => __('size 257px*160px', 'aurore'),
-        /*尺寸257px*160px*/
+        'name' => __('聚焦图二', 'aurore'),
+        'desc' => __('尺寸257px*160px', 'aurore'),
         'id' => 'feature2_img',
         'std' => $imagepath . '/temp.png',
         'type' => 'upload'
     );
 
     $options[] = array(
-        'name' => __('Top-feature 2 title', 'aurore'),
-        /*聚焦图二标题*/
-        'desc' => __('Top-feature 2 title', 'aurore'),
-        /*聚焦图二标题*/
+        'name' => __('聚焦图二标题', 'aurore'),
+        'desc' => __('聚焦图二标题', 'aurore'),
         'id' => 'feature2_title',
-        'std' => 'feature2',
+        'std' => '聚焦图二标题',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Top-feature 2 description', 'aurore'),
-        /*聚焦图二描述*/
-        'desc' => __('Top-feature 2 description', 'aurore'),
-        /*聚焦图二描述*/
+        'name' => __('聚焦图二描述', 'aurore'),
+        'desc' => __('聚焦图二描述', 'aurore'),
         'id' => 'feature2_description',
-        'std' => 'Description goes here 2',
+        'std' => '聚焦图二描述',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Top-feature 2 link', 'aurore'),
-        /*聚焦图二链接*/
-        'desc' => __('Top-feature 2 link', 'aurore'),
-        /*聚焦图二链接*/
+        'name' => __('聚焦图二链接', 'aurore'),
+        'desc' => __('聚焦图二链接', 'aurore'),
         'id' => 'feature2_link',
         'std' => '#',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Top-feature 3 image', 'aurore'),
-        /*聚焦图三*/
-        'desc' => __('size 257px*160px', 'aurore'),
-        /*尺寸257px*160px*/
+        'name' => __('聚焦图三', 'aurore'),
+        'desc' => __('尺寸257px*160px', 'aurore'),
         'id' => 'feature3_img',
         'std' => $imagepath . '/temp.png',
         'type' => 'upload'
     );
 
     $options[] = array(
-        'name' => __('Top-feature 3 title', 'aurore'),
-        /*聚焦图三标题*/
-        'desc' => __('Top-feature 3 title', 'aurore'),
-        /*聚焦图三标题*/
+        'name' => __('聚焦图三标题', 'aurore'),
+        'desc' => __('聚焦图三标题', 'aurore'),
         'id' => 'feature3_title',
-        'std' => 'feature3',
+        'std' => '聚焦图三标题',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Top-feature 3 description', 'aurore'),
-        /*聚焦图三描述*/
-        'desc' => __('Top-feature 3 description', 'aurore'),
-        /*聚焦图三描述*/
+        'name' => __('聚焦图三描述', 'aurore'),
+        'desc' => __('聚焦图三描述', 'aurore'),
         'id' => 'feature3_description',
-        'std' => 'Description goes here 3',
+        'std' => '聚焦图三描述',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Top-feature 3 link', 'aurore'),
-        /*聚焦图三链接*/
-        'desc' => __('Top-feature 3 link', 'aurore'),
-        /*聚焦图三链接*/
+        'name' => __('聚焦图三链接', 'aurore'),
+        'desc' => __('聚焦图三链接', 'aurore'),
         'id' => 'feature3_link',
         'std' => '#',
         'type' => 'text'
@@ -644,129 +625,103 @@ function optionsframework_options()
 
     //文章页
     $options[] = array(
-        'name' => __('Post page', 'aurore'),
-        /*文章页*/
+        'name' => __('文章页', 'aurore'),
         'type' => 'heading'
     );
 
     $options[] = array(
-        'name' => __('Post style', 'aurore'),
-        /*文章样式*/
+        'name' => __('文章样式', 'aurore'),
         'id' => 'entry_content_theme',
         'std' => "sakura",
         'type' => "radio",
         'options' => array(
-            'aurore' => __('aurore', 'aurore'),
-            /*默认样式*/
-            'github' => __('GitHub', 'aurore'),
+            'aurore' => __('Aurore', 'aurore'),
+            'github' => __('Github', 'Github'),
         )
     );
 
     $options[] = array(
-        'name' => __('Post like', 'aurore'),
-        /*文章点赞*/
+        'name' => __('文章点赞', 'aurore'),
         'id' => 'post_like',
         'std' => "yes",
         'type' => "radio",
         'options' => array(
-            'yes' => __('Open', 'aurore'),
-            /*开启*/
-            'no' => __('Close', 'aurore'),
-            /*关闭*/
+            'yes' => __('开启', 'aurore'),
+            'no' => __('关闭', 'aurore'),
         )
     );
 
     $options[] = array(
-        'name' => __('Post share', 'aurore'),
-        /*文章分享*/
+        'name' => __('文章分享', 'aurore'),
         'id' => 'post_share',
         'std' => "yes",
         'type' => "radio",
         'options' => array(
-            'yes' => __('Open', 'aurore'),
-            /*开启*/
-            'no' => __('Close', 'aurore'),
-            /*关闭*/
+            'yes' => __('开启', 'aurore'),
+            'no' => __('关闭', 'aurore'),
         )
     );
 
     $options[] = array(
-        'name' => __('Previous and Next', 'aurore'),
-        /*上一篇下一篇*/
+        'name' => __('上一篇下一篇', 'aurore'),
         'id' => 'post_nepre',
         'std' => "yes",
         'type' => "radio",
         'options' => array(
-            'yes' => __('Open', 'aurore'),
-            /*开启*/
-            'no' => __('Close', 'aurore'),
-            /*关闭*/
+            'yes' => __('开启', 'aurore'),
+            'no' => __('关闭', 'aurore'),
         )
     );
 
     $options[] = array(
-        'name' => __('Author profile', 'aurore'),
-        /*博主信息*/
+        'name' => __('博主信息', 'aurore'),
         'id' => 'author_profile',
         'std' => "yes",
         'type' => "radio",
         'options' => array(
-            'yes' => __('Open', 'aurore'),
-            /*开启*/
-            'no' => __('Close', 'aurore'),
-            /*关闭*/
+            'yes' => __('开启', 'aurore'),
+            'no' => __('关闭', 'aurore'),
         )
     );
 
     $options[] = array(
-        'name' => __('Alipay reward', 'aurore'),
-        /*支付宝打赏*/
-        'desc' => __('Alipay qrcode', 'aurore'),
-        /*支付宝二维码*/
+        'name' => __('支付宝打赏', 'aurore'),
+        'desc' => __('支付宝二维码', 'aurore'),
         'id' => 'alipay_code',
         'type' => 'upload'
     );
 
     $options[] = array(
-        'name' => __('Wechat reward', 'aurore'),
-        /*微信打赏*/
-        'desc' => __('Wechat qrcode ', 'aurore'),
-        /*微信二维码*/
+        'name' => __('微信打赏', 'aurore'),
+        'desc' => __('微信二维码', 'aurore'),
         'id' => 'wechat_code',
         'type' => 'upload'
     );
 
     //社交选项
     $options[] = array(
-        'name' => __('Social network', 'aurore'),
-        /*社交网络*/
+        'name' => __('社交网络', 'aurore'),
         'type' => 'heading'
     );
 
     $options[] = array(
-        'name' => __('Wechat', 'aurore'),
-        /*微信*/
-        'desc' => __('Wechat qrcode', 'aurore'),
-        /*微信二维码*/
+        'name' => __('微信', 'aurore'),
+        'desc' => __('微信二维码', 'aurore'),
         'id' => 'wechat',
         'type' => 'upload'
     );
 
     $options[] = array(
-        'name' => __('Sina Weibo', 'aurore'),
-        /*新浪微博*/
-        'desc' => __('Sina Weibo address', 'aurore'),
-        /*新浪微博地址*/
+        'name' => __('新浪微博', 'aurore'),
+        'desc' => __('新浪微博地址', 'aurore'),
         'id' => 'sina',
         'std' => '',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Tencent QQ', 'aurore'),
-        /*腾讯QQ*/
-        'desc' => __('tencent://message/?uin={{QQ number}}. for example, tencent://message/?uin=123456', 'aurore'),
-        /*tencent://message/?uin={{QQ号码}}，如tencent://message/?uin=123456*/
+        'name' => __('腾讯QQ', 'aurore'),
+        'desc' => __('tencent://message/?uin={{QQ号码}}，如tencent://message/?uin=123456', 'aurore'),
         'id' => 'qq',
         'std' => '',
         'type' => 'text'
@@ -774,18 +729,15 @@ function optionsframework_options()
 
     $options[] = array(
         'name' => __('Telegram', 'aurore'),
-        'desc' => __('Telegram link', 'aurore'),
-        /*Telegram链接*/
+        'desc' => __('Telegram链接', 'aurore'),
         'id' => 'telegram',
         'std' => '',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Qzone', 'aurore'),
-        /*QQ空间*/
-        'desc' => __('Qzone address', 'aurore'),
-        /*QQ空间地址*/
+        'name' => __('QQ空间', 'aurore'),
+        'desc' => __('QQ空间地址', 'aurore'),
         'id' => 'qzone',
         'std' => '',
         'type' => 'text'
@@ -793,8 +745,7 @@ function optionsframework_options()
 
     $options[] = array(
         'name' => __('GitHub', 'aurore'),
-        'desc' => __('GitHub address', 'aurore'),
-        /*GitHub地址*/
+        'desc' => __('GitHub地址', 'aurore'),
         'id' => 'github',
         'std' => '',
         'type' => 'text'
@@ -802,65 +753,55 @@ function optionsframework_options()
 
     $options[] = array(
         'name' => __('Lofter', 'aurore'),
-        'desc' => __('Lofter address', 'aurore'),
-        /*lofter地址*/
+        'desc' => __('lofter地址', 'aurore'),
         'id' => 'lofter',
         'std' => '',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('BiliBili', 'aurore'),
-        'desc' => __('BiliBili address', 'aurore'),
-        /*B站地址*/
+        'name' => __('B站', 'aurore'),
+        'desc' => __('B站地址', 'aurore'),
         'id' => 'bili',
         'std' => '',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Youku video', 'aurore'),
-        /*优酷视频*/
-        'desc' => __('Youku video address', 'aurore'),
-        /*优酷地址*/
+        'name' => __('优酷视频', 'aurore'),
+        'desc' => __('优酷地址', 'aurore'),
         'id' => 'youku',
         'std' => '',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Netease Cloud Music', 'aurore'),
-        /*网易云音乐*/
-        'desc' => __('Netease Cloud Music address', 'aurore'),
-        /*网易云音乐地址*/
+        'name' => __('网易云音乐', 'aurore'),
+        'desc' => __('网易云音乐地址', 'aurore'),
         'id' => 'wangyiyun',
         'std' => '',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Twitter', 'aurore'),
-        'desc' => __('Twitter address', 'aurore'),
-        /*推特地址*/
+        'name' => __('推特', 'aurore'),
+        'desc' => __('推特地址', 'aurore'),
         'id' => 'twitter',
         'std' => '',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Facebook', 'aurore'),
-        'desc' => __('Facebook address', 'aurore'),
-        /*脸书地址*/
+        'name' => __('脸书', 'aurore'),
+        'desc' => __('脸书地址', 'aurore'),
         'id' => 'facebook',
         'std' => '',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Jianshu', 'aurore'),
-        /*简书*/
-        'desc' => __('Jianshu address', 'aurore'),
-        /*简书地址*/
+        'name' => __('简书', 'aurore'),
+        'desc' => __('简书地址', 'aurore'),
         'id' => 'jianshu',
         'std' => '',
         'type' => 'text'
@@ -868,38 +809,31 @@ function optionsframework_options()
 
     $options[] = array(
         'name' => __('CSDN', 'aurore'),
-        'desc' => __('CSND community address', 'aurore'),
-        /*CSND社区地址*/
+        'desc' => __('CSND社区地址', 'aurore'),
         'id' => 'csdn',
         'std' => '',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Zhihu', 'aurore'),
-        /*知乎*/
-        'desc' => __('Zhihu address', 'aurore'),
-        /*知乎地址*/
+        'name' => __('知乎', 'aurore'),
+        'desc' => __('知乎地址', 'aurore'),
         'id' => 'zhihu',
         'std' => '',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Email-name', 'aurore'),
-        /*邮箱-用户名*/
-        'desc' => __('The name part of name@domain.com, only the frontend has js runtime environment can get the full address, you can rest assured to fill in', 'aurore'),
-        /*name@domain.com 的 name 部分，前端仅具有js运行环境时才能获取完整地址，可放心填写*/
+        'name' => __('邮箱-用户名', 'aurore'),
+        'desc' => __('name@domain.com 的 name 部分，前端仅具有js运行环境时才能获取完整地址，可放心填写', 'aurore'),
         'id' => 'email_name',
         'std' => '',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Email-domain', 'aurore'),
-        /*邮箱-域名*/
-        'desc' => __('The domain.com part of name@domain.com', 'aurore'),
-        /*ame@domain.com 的 domain.com 部分*/
+        'name' => __('邮箱-域名', 'aurore'),
+        'desc' => __('me@domain.com 的 domain.com 部分', 'aurore'),
         'id' => 'email_domain',
         'std' => '',
         'type' => 'text'
@@ -907,22 +841,20 @@ function optionsframework_options()
 
     //评论区
     $options[] = array(
-        'name' => __('Comment field', 'aurore'),
-        /*评论区*/
+        'name' => __('评论区', 'aurore'),
         'type' => 'heading'
     );
 
     $options[] = array(
-        'name' => __('Gravatar avatar proxy', 'aurore'),
-        'desc' => __('A front-ed proxy for Gravatar, eg. gravatar.2heng.xin/avatar . Leave it blank if you do not need.', 'aurore'),
+        'name' => __('Gravatar头像代理', 'aurore'),
+        'desc' => __('填写Gravatar头像的代理地址,留空则不使用代理。', 'aurore'),
         'id' => 'gravatar_proxy',
-        'std' => "gravatar.2heng.xin/avatar",
+        'std' => "https://cn.gravatar.com/avatar/",
         'type' => "text"
     );
 
     $options[] = array(
-        'name' => __('Comment image upload API', 'aurore'),
-        /*评论图片上传接口*/
+        'name' => __('评论上传图片接口', 'aurore'),
         'id' => 'img_upload_api',
         'std' => "imgur",
         'type' => "radio",
@@ -935,172 +867,138 @@ function optionsframework_options()
 
     $options[] = array(
         'name' => __('Imgur Client ID', 'aurore'),
-        'desc' => __('Register your application <a href="https://api.imgur.com/oauth2/addclient">here</a>, note we only need the Client ID here.', 'aurore'),
+        'desc' => __('<a href="https://api.imgur.com/oauth2/addclient">在此处注册</a> ', 'aurore'),
         'id' => 'imgur_client_id',
         'std' => '',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('SM.MS Secret Token', 'aurore'),
-        'desc' => __('Register your application <a href="https://sm.ms/home/apitoken">here</a>.', 'aurore'),
+        'name' => __('SM.MS密钥', 'aurore'),
+        'desc' => __(' <a href="https://sm.ms/home/apitoken">在此处注册</a>', 'aurore'),
         'id' => 'smms_client_id',
         'std' => '',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Chevereto API v1 key', 'aurore'),
-        'desc' => __('Get your API key here: ' . akina_option('cheverto_url') . '/dashboard/settings/api', 'aurore'),
+        'name' => __('Chevereto API key', 'aurore'),
+        'desc' => __('在此处获取您的 API 密钥: ' . akina_option('cheverto_url') . '/dashboard/settings/api', 'aurore'),
         'id' => 'chevereto_api_key',
         'std' => '',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Chevereto URL', 'aurore'),
-        'desc' => __('Your Chevereto homepage url, no slash in the end, eg. https://your.cherverto.com', 'aurore'),
+        'name' => __('Chevereto地址', 'aurore'),
+        'desc' => __('Chevereto主页地址。比如：https://your.cherverto.com', 'aurore'),
         'id' => 'cheverto_url',
         'std' => 'https://your.cherverto.com',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Comment images proxy', 'aurore'),
-        'desc' => __('A front-ed proxy for the uploaded images. Leave it blank if you do not need.', 'aurore'),
+        'name' => __('评论图片代理', 'aurore'),
+        'desc' => __('上传图像的前端代理。如果不需要，请将其留空。', 'aurore'),
         'id' => 'cmt_image_proxy',
         'std' => 'https://images.weserv.nl/?url=',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Imgur upload proxy', 'aurore'),
-        'desc' => __('A back-ed proxy to upload images. You may set a self hosted proxy with Nginx, following my <a href="https://2heng.xin/2018/06/06/javascript-upload-images-with-imgur-api/">turtal</a>. This feature is mainly for Chinese who cannot access to Imgur due to the GFW. The default and official setting is 【<a href="https://api.imgur.com/3/image/">https://api.imgur.com/3/image/</a>】', 'aurore'),
+        'name' => __('Imgur 上传代理', 'aurore'),
+        'desc' => __('后端上传图片到 Imgur 的时候使用的代理', 'aurore'),
         'id' => 'imgur_upload_image_proxy',
         'std' => 'https://api.imgur.com/3/image/',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Comments reply notification', 'aurore'),
-        /*邮件回复通知*/
-        'desc' => __('WordPress will use email to notify users when their comments receive a reply by default. Tick this item allows users to set their own comments reply notification', 'aurore'),
-        /*WordPress默认会使用邮件通知用户评论收到回复，开启此项允许用户设置自己的评论收到回复时是否使用邮件通知*/
+        'name' => __('邮件回复通知', 'aurore'),
+        'desc' => __('WordPress默认会使用邮件通知用户评论收到回复，开启此项允许用户设置自己的评论收到回复时是否使用邮件通知', 'aurore'),
         'id' => 'mail_notify',
         'std' => '0',
         'type' => 'checkbox'
     );
 
     $options[] = array(
-        'name' => __('Administrator comment notification', 'aurore'),
-        /*邮件回复通知管理员*/
-        'desc' => __('Whether to use email notification when the administrator\'s comments receive a reply', 'aurore'),
-        /*当管理员评论收到回复时是否使用邮件通知*/
+        'name' => __('邮件回复通知管理员', 'aurore'),
+        'desc' => __('当管理员评论收到回复时是否使用邮件通知', 'aurore'),
         'id' => 'admin_notify',
         'std' => '0',
         'type' => 'checkbox'
     );
 
     $options[] = array(
-        'name' => __('Enable private comment', 'aurore'),
-        /*允许私密评论*/
-        'desc' => __('Allow users to set their own comments to be invisible to others', 'aurore'),
-        /*允许用户设置自己的评论对其他人不可见*/
+        'name' => __('允许私密评论', 'aurore'),
+        'desc' => __('允许用户设置自己的评论对其他人不可见', 'aurore'),
         'id' => 'open_private_message',
         'std' => '0',
         'type' => 'checkbox'
     );
 
     $options[] = array(
-        'name' => __('Human verification', 'aurore'),
-        /*机器人验证*/
-        'desc' => __('Enable human verification', 'aurore'),
-        /*开启机器人验证*/
+        'name' => __('机器人验证', 'aurore'),
+        'desc' => __('开启机器人验证', 'aurore'),
         'id' => 'norobot',
         'std' => '0',
         'type' => 'checkbox'
     );
 
     $options[] = array(
-        'name' => __('QQ avatar link encryption', 'aurore'),
-        /*QQ头像链接加密*/
-        'desc' => __('Do not display the user\'s qq avatar links directly.', 'aurore'),
-        /*不直接暴露用户qq头像链接*/
+        'name' => __('QQ头像链接加密', 'aurore'),
+        'desc' => __('不直接暴露用户qq头像链接', 'aurore'),
         'id' => 'qq_avatar_link',
         'std' => "off",
         'type' => "select",
         'options' => array(
-            'off' => __('Off (default)', 'aurore'),
-            /*关闭（默认）*/
-            'type_1' => __('use redirect (general security)', 'aurore'),
-            /*使用 重定向（安全性一般）'*/
-            'type_2' => __('fetch data at backend (high security)', 'aurore'),
-            /*后端获取数据（安全性高）*/
-            'type_3' => __('fetch data at backend (high security，slow)', 'aurore'),
-            /*后端获取数据（安全性高, 慢）*/
+            'off' => __('关闭（默认）', 'aurore'),
+            'type_1' => __('使用 重定向（安全性一般）', 'aurore'),
+            'type_2' => __('后端获取数据（安全性高）', 'aurore'),
+            'type_3' => __('后端获取数据（安全性高, 慢）', 'aurore'),
         )
     );
 
     $options[] = array(
-        'name' => __('Comment UA infomation', 'aurore'),
-        /*评论UA信息*/
-        'desc' => __('Check to enable, display the user\'s browser, operating system information', 'aurore'),
-        /*勾选开启，显示用户的浏览器，操作系统信息*/
+        'name' => __('评论UA信息', 'aurore'),
+        'desc' => __('勾选开启，显示用户的浏览器，操作系统信息', 'aurore'),
         'id' => 'open_useragent',
         'std' => '0',
         'type' => 'checkbox'
     );
 
     $options[] = array(
-        'name' => __('Comment location infomation', 'aurore'),
-        /*评论位置信息*/
-        'desc' => __('Check to enable, display the user\'s location info', 'aurore'),
-        /*勾选开启，显示用户的位置信息*/
+        'name' => __('评论位置信息', 'aurore'),
+        'desc' => __('勾选开启，显示用户的位置信息', 'aurore'),
         'id' => 'open_location',
         'std' => '0',
         'type' => 'checkbox'
     );
 
     $options[] = array(
-        'name' => __('Enable disqus', 'aurore'),
-        /*开启多说插件支持*/
-        'desc' => __('Enable disqus for comment', 'aurore'),
-        /*多说已经凉了*/
-        'id' => 'general_disqus_plugin_support',
-        'std' => '0',
-        'type' => 'checkbox'
-    );
-
-    $options[] = array(
-        'name' => __('Time Zone adjustment', 'aurore'),
-        /*时区调整*/
-        'desc' => __('If the comment has a time difference problem adjust here, fill in an integer, the calculation method: actual_time = display_error_time - the_integer_you_entered (unit: hour)', 'aurore'),
-        /*如果评论出现时差问题在这里调整，填入一个整数，计算方法：实际时间=显示错误的时间-你输入的整数（单位：小时）*/
+        'name' => __('时区调整', 'aurore'),
+        'desc' => __('如果评论出现时差问题在这里调整，填入一个整数，计算方法：实际时间=显示错误的时间-你输入的整数（单位：小时）', 'aurore'),
         'id' => 'time_zone_fix',
         'std' => '0',
         'type' => 'text'
     );
     //后台配置
     $options[] = array(
-        'name' => __('Dashboard configuration', 'aurore'),
-        /*后台配置*/
+        'name' => __('后台配置', 'aurore'),
         'type' => 'heading'
     );
 
     //后台面板自定义配色方案
     $options[] = array(
-        'name' => __('Dashboard panel custom color scheme', 'aurore'),
-        /*后台面板自定义配色方案*/
-        'desc' => __('You can design the dashboard panel (/wp-admin/) style yourself below, but before you start, please go to <a href="/wp-admin/profile.php">here</a> to change the color scheme to custom.(Custom).<br><b>Tip: </b>How to match colors? Maybe <a href="https://mashiro.top/color-thief/">this</a> can help you.', 'aurore'),
-        /*你可以在下面自行设计后台面板（/wp-admin/）样式，不过在开始之前请到<a href="/wp-admin/profile.php">这里</a>将配色方案改为自定义（Custom）。<br><b>Tip: </b>如何搭配颜色？或许<a href="https://mashiro.top/color-thief/">这个</a>可以帮到你。*/
+        'name' => __('后台面板自定义配色方案', 'aurore'),
+        'desc' => __('你可以在下面自行设计后台面板（/wp-admin/）样式，不过在开始之前请到<a href="/wp-admin/profile.php">这里</a>将配色方案改为自定义（Custom）。<br><b>Tip: </b>如何搭配颜色？或许<a href="https://mashiro.top/color-thief/">这个</a>可以帮到你。', 'aurore'),
         'id' => 'scheme_tip',
         'std' => '',
         'type' => 'typography '
     );
 
     $options[] = array(
-        'name' => __('Panel main color A', 'aurore'),
-        /*面板主色调A*/
+        'name' => __('面板主色调A', 'aurore'),
         'id' => 'dash_scheme_color_a',
         'std' => "#c6742b",
         'desc' => __('<i>(array) (optional)</i> An array of CSS color definitions which are used to give the user a feel for the theme.', 'aurore'),
@@ -1108,7 +1006,7 @@ function optionsframework_options()
     );
 
     $options[] = array(
-        'name' => __('Panel main color B', 'aurore'),
+        'name' => __('面板主色调B', 'aurore'),
         'id' => 'dash_scheme_color_b',
         'std' => "#d88e4c",
         'desc' => __('<i>(array) (optional)</i> An array of CSS color definitions which are used to give the user a feel for the theme.', 'aurore'),
@@ -1116,7 +1014,7 @@ function optionsframework_options()
     );
 
     $options[] = array(
-        'name' => __('Panel main color C', 'aurore'),
+        'name' => __('面板主色调C', 'aurore'),
         'id' => 'dash_scheme_color_c',
         'std' => "#695644",
         'desc' => __('<i>(array) (optional)</i> An array of CSS color definitions which are used to give the user a feel for the theme.', 'aurore'),
@@ -1124,7 +1022,7 @@ function optionsframework_options()
     );
 
     $options[] = array(
-        'name' => __('Panel main color D', 'aurore'),
+        'name' => __('面板主色调D', 'aurore'),
         'id' => 'dash_scheme_color_d',
         'std' => "#a19780",
         'desc' => __('<i>(array) (optional)</i> An array of CSS color definitions which are used to give the user a feel for the theme.', 'aurore'),
@@ -1132,8 +1030,7 @@ function optionsframework_options()
     );
 
     $options[] = array(
-        'name' => __('Panel icon color——base', 'aurore'),
-        /*面板图标配色——base*/
+        'name' => __('面板图标配色-base', 'aurore'),
         'id' => 'dash_scheme_color_base',
         'std' => "#e5f8ff",
         'desc' => __('<i>(array) (optional)</i> An array of CSS color definitions used to color any SVG icons.', 'aurore'),
@@ -1141,7 +1038,7 @@ function optionsframework_options()
     );
 
     $options[] = array(
-        'name' => __('Panel icon color——focus', 'aurore'),
+        'name' => __('面板图标配色——focus', 'aurore'),
         'id' => 'dash_scheme_color_focus',
         'std' => "#fff",
         'desc' => __('<i>(array) (optional)</i> An array of CSS color definitions used to color any SVG icons.', 'aurore'),
@@ -1149,7 +1046,7 @@ function optionsframework_options()
     );
 
     $options[] = array(
-        'name' => __('Panel icon color——current', 'aurore'),
+        'name' => __('面板图标配色——current', 'aurore'),
         'id' => 'dash_scheme_color_current',
         'std' => "#fff",
         'desc' => __('<i>(array) (optional)</i> An array of CSS color definitions used to color any SVG icons.', 'aurore'),
@@ -1157,37 +1054,30 @@ function optionsframework_options()
     );
 
     $options[] = array(
-        'name' => __('Other custom panel styles(CSS)', 'aurore'),
-        /*其他自定义面板样式(CSS)*/
-        'desc' => __('If you need to adjust other styles of the panel, put the style here.', 'aurore'),
-        /*如果还需要对面板其他样式进行调整可以把style放到这里*/
+        'name' => __('其他自定义面板样式(CSS)', 'aurore'),
+        'desc' => __('如果还需要对面板其他样式进行调整可以把style放到这里', 'aurore'),
         'id' => 'dash_scheme_css_rules',
         'std' => '#adminmenu .wp-has-current-submenu .wp-submenu a,#adminmenu .wp-has-current-submenu.opensub .wp-submenu a,#adminmenu .wp-submenu a,#adminmenu a.wp-has-current-submenu:focus+.wp-submenu a,#wpadminbar .ab-submenu .ab-item,#wpadminbar .quicklinks .menupop ul li a,#wpadminbar .quicklinks .menupop.hover ul li a,#wpadminbar.nojs .quicklinks .menupop:hover ul li a,.folded #adminmenu .wp-has-current-submenu .wp-submenu a{color:#f3f2f1}body{background-image:url(https://view.moezx.cc/images/2019/04/21/windows10-2019-4-21-i3.jpg);background-size:cover;background-repeat:no-repeat;background-attachment:fixed;}#wpcontent{background:rgba(255,255,255,.8)}',
         'type' => 'textarea'
     );
 
     $options[] = array(
-        'name' => __('Login interface background image', 'aurore'),
-        /*后台登陆界面背景图*/
-        'desc' => __('Use the default image if left this blank', 'aurore'),
-        /*该地址为空则使用默认图片*/
+        'name' => __('后台登陆界面背景图', 'aurore'),
+        'desc' => __('该地址为空则使用默认图片', 'aurore'),
         'id' => 'login_bg',
         'type' => 'upload'
     );
 
     $options[] = array(
-        'name' => __('Login interface logo', 'aurore'),
-        /*后台登陆界面logo*/
-        'desc' => __('Used for login interface display', 'aurore'),
-        /*用于登录界面显示*/
+        'name' => __('后台登陆界面logo', 'aurore'),
+        'desc' => __('用于登录界面显示', 'aurore'),
         'id' => 'logo_img',
-        'std' => $imagepath . 'mashiro-logo-s.png',
+        'std' => $imagepath . 'aurore-logo-s.png',
         'type' => 'upload'
     );
 
     $options[] = array(
-        'name' => __('Login/registration related settings', 'aurore'),
-        /*登陆/注册相关设定*/
+        'name' => __('登陆/注册相关设定', 'aurore'),
         'desc' => __(' ', 'space', 'aurore'),
         'id' => 'login_tip',
         'std' => '',
@@ -1195,50 +1085,40 @@ function optionsframework_options()
     );
 
     $options[] = array(
-        'name' => __('Specify login address', 'aurore'),
-        /*指定登录地址*/
-        'desc' => __('Forcibly do not use the background address to log in, fill in the new landing page address, such as http://www.xxx.com/login [Note] Before you fill out, test your new page can be opened normally, so as not to enter the background or other problems happening', 'aurore'),
-        /*强制不使用后台地址登陆，填写新建的登陆页面地址，比如 http://www.xxx.com/login【注意】填写前先测试下你新建的页面是可以正常打开的，以免造成无法进入后台等情况*/
+        'name' => __('指定登录地址', 'aurore'),
+        'desc' => __('强制不使用后台地址登陆，填写新建的登陆页面地址，比如 http://www.xxx.com/login【注意】填写前先测试下你新建的页面是可以正常打开的，以免造成无法进入后台等情况', 'aurore'),
         'id' => 'exlogin_url',
         'std' => '',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Specify registered address', 'aurore'),
-        /*指定注册地址*/
-        'desc' => __('This link is used on the login page as a registration entry', 'aurore'),
-        /*该链接使用在登录页面作为注册入口，建议填写*/
+        'name' => __('指定注册地址', 'aurore'),
+        'desc' => __('该链接使用在登录页面作为注册入口，建议填写', 'aurore'),
         'id' => 'exregister_url',
         'std' => '',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Allow users to register', 'aurore'),
-        /*允许用户注册*/
-        'desc' => __('Check to allow users to register at the frontend', 'aurore'),
-        /*勾选开启，允许用户在前台注册*/
+        'name' => __('允许用户注册', 'aurore'),
+        'desc' => __('勾选开启，允许用户在前台注册', 'aurore'),
         'id' => 'ex_register_open',
         'std' => '0',
         'type' => 'checkbox'
     );
 
     $options[] = array(
-        'name' => __('Automatically redirect after login', 'aurore'),
-        /*登录后自动跳转*/
-        'desc' => __('After checken, the administrator redirects to the background and the user redirects to the home page.', 'aurore'),
-        /*勾选开启，管理员跳转至后台，用户跳转至主页*/
+        'name' => __('登录后自动跳转', 'aurore'),
+        'desc' => __('勾选开启，管理员跳转至后台，用户跳转至主页', 'aurore'),
         'id' => 'login_urlskip',
         'std' => '0',
         'type' => 'checkbox'
     );
 
     $options[] = array(
-        'name' => __('Registration verification (frontend only, backend forced open)', 'aurore'),
-        /*注册验证（仅前端，后端强制开启）*/
-        'desc' => __('Check to enable slide verification', 'aurore'),
-        /*勾选开启滑动验证*/
+        'name' => __('注册验证（仅前端，后端强制开启）', 'aurore'),
+        'desc' => __('勾选开启滑动验证', 'aurore'),
         'id' => 'login_validate',
         'std' => '0',
         'type' => 'checkbox'
@@ -1251,30 +1131,24 @@ function optionsframework_options()
     );
 
     $options[] = array(
-        'name' => __('Images CDN', 'aurore'),
-        /*图片库*/
-        'desc' => __('Note: Fill in the format http(s)://your CDN domain name/. <br>In other words, the original path is http://your.domain/wp-content/uploads/2018/05/xx.png and the picture will load from http://your CDN domain/2018/05/xx.png', 'aurore'),
-        /*注意：填写格式为 http(s)://你的CDN域名/。<br>也就是说，原路径为 http://your.domain/wp-content/uploads/2018/05/xx.png 的图片将从 http://你的CDN域名/2018/05/xx.png 加载*/
+        'name' => __('图片库', 'aurore'),
+        'desc' => __('注意：填写格式为 http(s)://你的CDN域名/。<br>也就是说，原路径为 http://your.domain/wp-content/uploads/2018/05/xx.png 的图片将从 http://你的CDN域名/2018/05/xx.png 加载', 'aurore'),
         'id' => 'qiniu_cdn',
         'std' => '',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Use the front-end library locally (lib.js、lib.css)', 'aurore'),
-        /*本地调用前端库（lib.js、lib.css）*/
-        'desc' => __('The front-end library don\'t load from jsDelivr, not recommand', 'aurore'),
-        /*前端库不走 jsDelivr，不建议启用*/
+        'name' => __('本地调用前端库（lib.js、lib.css）', 'aurore'),
+        'desc' => __('前端库不走 jsDelivr，不建议启用', 'aurore'),
         'id' => 'jsdelivr_cdn_test',
         'std' => '0',
         'type' => 'checkbox'
     );
 
     $options[] = array(
-        'name' => __('Use js and css file of the theme (sakura-app.js、style.css) locally', 'aurore'),
-        /*本地调用主题 js、css 文件（sakura-app.js、style.css）*/
-        'desc' => __('The js and css files of the theme do not load from jsDelivr, please open when DIY', 'aurore'),
-        /*主题的 js、css 文件不走 jsDelivr，DIY 时请开启*/
+        'name' => __('本地调用主题 js、css 文件（sakura-app.js、style.css）', 'aurore'),
+        'desc' => __('主题的 js、css 文件不走 jsDelivr，DIY 时请开启', 'aurore'),
         'id' => 'app_no_jsdelivr_cdn',
         'std' => '0',
         'type' => 'checkbox'
@@ -1282,127 +1156,110 @@ function optionsframework_options()
 
     //其他
     $options[] = array(
-        'name' => __('Others', 'aurore'),
-        /*其他*/
+        'name' => __('其他', 'aurore'),
         'type' => 'heading'
     );
 
     $options[] = array(
-        'name' => __('About', 'aurore'),
-        /*关于*/
-        'desc' => sprintf(__('Theme Sakura v %s  |  <a href="https://2heng.xin/theme-sakura/">Theme document</a>  |  <a href="https://github.com/mashirozx/Sakura/">Source code</a><a href="https://github.com/mashirozx/Sakura/releases/latest"><img src="https://img.shields.io/github/release/mashirozx/Sakura.svg?style=flat-square" alt="GitHub release"></a>', 'aurore'), SAKURA_VERSION),
-        /*Theme Sakura v'.SAKURA_VERSION.'  |  <a href="https://2heng.xin/theme-sakura/">主题说明</a>  |  <a href="https://github.com/mashirozx/Sakura/">源码</a><a href="https://github.com/mashirozx/Sakura/releases/latest"><img src="https://img.shields.io/github/release/mashirozx/Sakura.svg?style=flat-square" alt="GitHub release"></a>*/
+        'name' => __('关于', 'aurore'),
+        'desc' => sprintf(__('Theme Aurore v %s  | BY Suran  |  <a href="https://github.com/yeyufan1996/Aurore/">源码</a><a href="https://github.com/yeyufan1996/Aurore/releases/latest"><img src="https://img.shields.io/github/release/yeyufan1996/Aurore.svg?style=flat-square" alt="GitHub release"></a>', 'aurore'), AURORE_VERSION),
         'id' => 'theme_intro',
         'std' => '',
         'type' => 'typography '
     );
 
     $options[] = array(
-        'name' => __('Check for Updates', 'aurore'),
-        /*检查更新*/
-        'desc' => '<a href="https://github.com/mashirozx/Sakura/releases/latest">Download the latest version</a>',
+        'name' => __('检查更新', 'aurore'),
+        'desc' => '<a href="https://github.com/yeyufan1996/Aurore/releases/latest">下载最新版本</a>',
         'id' => "release_info",
         'std' => "tag",
         'type' => "images",
         'options' => array(
-            'tag' => 'https://img.shields.io/github/release/mashirozx/Sakura.svg?style=flat-square',
-            'tag2' => 'https://img.shields.io/github/commits-since/mashirozx/Sakura/v' . SAKURA_VERSION . '/dev.svg?style=flat-square',
+            'tag' => 'https://img.shields.io/github/release/yeyufan1996/Aurore.svg?style=flat-square',
         ),
     );
 
     $options[] = array(
-        'name' => __('Footer float music player', 'aurore'),
-        /*页脚悬浮播放器*/
-        'desc' => __('Choose which platform you\'ll use.', 'aurore'),
+        'name' => __('页脚悬浮播放器', 'aurore'),
+        'desc' => __('选择播放源', 'aurore'),
         'id' => 'aplayer_server',
         'std' => "netease",
         'type' => "select",
         'options' => array(
-            'netease' => __('Netease Cloud Music (default)', 'aurore'),
-            'xiami' => __('Xiami Music', 'aurore'),
-            'kugou' => __('KuGou Music', 'aurore'),
-            'baidu' => __('Baidu Music', 'aurore'),
-            'tencent' => __('QQ Music (may fail) ', 'aurore'),
-            'off' => __('Off', 'aurore'),
+            'netease' => __('网易云 (默认)', 'aurore'),
+            'xiami' => __('小米', 'aurore'),
+            'kugou' => __('酷狗', 'aurore'),
+            'baidu' => __('百度', 'aurore'),
+            'tencent' => __('QQ ', 'aurore'),
+            'off' => __('关闭', 'aurore'),
         )
     );
 
     $options[] = array(
-        'name' => __('Song list ID', 'aurore'),
-        'desc' => __('Fill in the "song list" ID, eg: https://music.163.com/#/playlist?id=2288037900 The ID is 2288037900', 'aurore'),
+        'name' => __('歌单ID', 'aurore'),
+        'desc' => __('填写歌单ID, 比如: https://music.163.com/#/playlist?id=2288037900  ID就是2288037900', 'aurore'),
         'id' => 'aplayer_playlistid',
         'std' => '2288037900',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Netease Cloud Music cookie', 'aurore'),
-        'desc' => __('For Netease Cloud Music, fill in your vip account\'s cookies if you want to play special tracks.<b>If you don\'t know what does mean, left it blank.</b>', 'aurore'),
+        'name' => __('网易云cookie', 'aurore'),
+        'desc' => __('一些VIP歌曲需要cookie', 'aurore'),
         'id' => 'aplayer_cookie',
         'std' => '',
         'type' => 'textarea'
     );
 
     $options[] = array(
-        'name' => __('Version Control', 'aurore'),
-        /*版本控制*/
-        'desc' => __('Used to update frontend cookies and browser caches, any string can be used', 'aurore'),
-        /*用于更新前端 cookie 及浏览器缓存，可使用任意字符串*/
+        'name' => __('版本控制', 'aurore'),
+        'desc' => __('用于更新前端 cookie 及浏览器缓存，可使用任意字符串', 'aurore'),
         'id' => 'cookie_version',
         'std' => '',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Enable PJAX (recommand on)', 'aurore'),
-        /*开启PJAX局部刷新（建议开启）*/
-        'desc' => __('The principle is the same as Ajax', 'aurore'),
-        /*原理与Ajax相同*/
+        'name' => __('开启PJAX局部刷新（建议开启', 'aurore'),
+        'desc' => __('原理与Ajax相同', 'aurore'),
         'id' => 'poi_pjax',
         'std' => '0',
         'type' => 'checkbox'
     );
 
     $options[] = array(
-        'name' => __('Enable NProgress progress bar', 'aurore'),
-        /*开启NProgress加载进度条*/
-        'desc' => __('Default off, check on', 'aurore'),
-        /*默认不开启，勾选开启*/
+        'name' => __('开启NProgress加载进度条', 'aurore'),
+        'desc' => __('默认不开启，勾选开启', 'aurore'),
         'id' => 'nprogress_on',
         'std' => '0',
         'type' => 'checkbox'
     );
 
     $options[] = array(
-        'name' => __('Enable sidebar widget', 'aurore'),
-        /*支持侧栏小部件*/
-        'desc' => __('Default off, check on', 'aurore'),
-        /*默认不开启，勾选开启*/
+        'name' => __('支持侧栏小部件', 'aurore'),
+        'desc' => __('默认不开启，勾选开启', 'aurore'),
         'id' => 'sakura_widget',
         'std' => '0',
         'type' => 'checkbox'
     );
 
     $options[] = array(
-        'name' => __('Enable Announcement', 'aurore'),
-        'desc' => __('Default off, check on', 'aurore'),
-        /*默认不显示，勾选开启*/
+        'name' => __('是否开启公告', 'aurore'),
+        'desc' => __('默认不显示，勾选开启', 'aurore'),
         'id' => 'head_notice',
         'std' => '0',
         'type' => 'checkbox'
     );
 
     $options[] = array(
-        'name' => __('Announcement content', 'aurore'),
-        'desc' => __('Announcement content, the text exceeds 142 bytes will be scrolled display (mobile device is invalid)', 'aurore'),
-        /*公告内容，文字超出142个字节将会被滚动显示（移动端无效），一个汉字 = 3字节，一个字母 = 1字节，自己计算吧*/
+        'name' => __('公告内容', 'aurore'),
+        'desc' => __('公告内容，文字超出142个字节将会被滚动显示（移动端无效），一个汉字 = 3字节，一个字母 = 1字节', 'aurore'),
         'id' => 'notice_title',
         'std' => '',
         'type' => 'text'
     );
     $options[] = array(
         'name' => __('Bilibili UID', 'aurore'),
-        /*bilibiliUID*/
         'desc' => __('Fill in your UID, eg.https://space.bilibili.com/13972644/, only fill in with the number part.', 'aurore'),
         'id' => 'bilibili_id',
         'std' => '13972644',
@@ -1411,128 +1268,103 @@ function optionsframework_options()
 
     $options[] = array(
         'name' => __('Bilibili Cookie', 'aurore'),
-        /*Bilibili Cookie*/
         'desc' => __('Fill in your Cookies, go to your bilibili homepage, you can get cookies in brownser network pannel with pressing F12. If left this blank, you\'ll not get the progress.', 'aurore'),
         'id' => 'bilibili_cookie',
         'std' => 'LIVE_BUVID=',
         'type' => 'textarea'
     );
     $options[] = array(
-        'name' => __('The categories of articles that don\'t not show on homepage', 'aurore'),
-        /*首页不显示的分类文章*/
-        'desc' => __('Fill in category ID, multiple IDs are divided by a comma ","', 'aurore'),
-        /*填写分类ID，多个用英文“ , ”分开*/
+        'name' => __('首页不显示的分类文章', 'aurore'),
+        'desc' => __('填写分类ID，多个用英文“ , ”分开', 'aurore'),
         'id' => 'classify_display',
         'std' => '',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Images category', 'aurore'),
-        /*图片展示分类*/
-        'desc' => __('Fill in category ID, multiple IDs are divided by a comma ","', 'aurore'),
-        /*填写分类ID，多个用英文“ , ”分开*/
+        'name' => __('图片展示分类', 'aurore'),
+        'desc' => __('填写分类ID，多个用英文“ , ”分开', 'aurore'),
         'id' => 'image_category',
         'std' => '',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Statistics Interface', 'aurore'),
-        /*统计接口*/
+        'name' => __('统计接口', 'aurore'),
         'id' => 'statistics_api',
         'std' => "theme_build_in",
         'type' => "radio",
         'options' => array(
-            'wp_statistics' => __('WP-Statistics plugin (Professional statistics, can exclude invalid access)', 'aurore'),
-            /*WP-Statistics 插件（专业性统计，可排除无效访问）*/
-            'theme_build_in' => __('Theme built-in (simple statistics, calculate each page access request)', 'aurore'),
-            /*主题内建（简单的统计，计算每一次页面访问请求）*/
+            'wp_statistics' => __('WP-Statistics 插件（专业性统计，可排除无效访问）', 'aurore'),
+            'theme_build_in' => __('主题内建（简单的统计，计算每一次页面访问请求）', 'aurore'),
         )
     );
 
     $options[] = array(
-        'name' => __('Statistical data display format', 'aurore'),
-        /*统计数据显示格式*/
+        'name' => __('统计数据显示格式', 'aurore'),
+        /**/
         'id' => 'statistics_format',
         'std' => "type_1",
         'type' => "radio",
         'options' => array(
-            'type_1' => __('23333 Views (default)', 'aurore'),
-            /*23333 次访问（默认）*/
-            'type_2' => __('23,333 Views (britain)', 'aurore'),
-            /*23,333 次访问（英式）'*/
-            'type_3' => __('23 333 Views (french)', 'aurore'),
-            /*23 333 次访问（法式）*/
-            'type_4' => __('23k Views (chinese)', 'aurore'),
-            /*23k 次访问（中式）*/
+            'type_1' => __('23333 次访问（默认）', 'aurore'),
+            'type_2' => __('23,333 次访问（英式）', 'aurore'),
+            'type_3' => __('23 333 次访问（法式）', 'aurore'),
+            'type_4' => __('23k 次访问（中式）', 'aurore'),
         )
     );
 
     $options[] = array(
-        'name' => __('Enable live search', 'aurore'),
-        /*启用实时搜索*/
-        'desc' => __('Real-time search in the foreground, call the Rest API to update the cache every hour, you can manually set the cache time in api.php', 'aurore'),
-        /*前台实现实时搜索，调用 Rest API 每小时更新一次缓存，可在 functions.php 里手动设置缓存时间*/
+        'name' => __('启用实时搜索', 'aurore'),
+        'desc' => __('前台实现实时搜索，调用 Rest API 每小时更新一次缓存，可在 functions.php 里手动设置缓存时间', 'aurore'),
         'id' => 'live_search',
         'std' => '0',
         'type' => 'checkbox'
     );
 
     $options[] = array(
-        'name' => __('Include comments in live search', 'aurore'),
-        /*实时搜索包含评论*/
-        'desc' => __('Search for comments in real-time search (not recommended if there are too many comments on the site)', 'aurore'),
-        /*在实时搜索中搜索评论（如果网站评论数量太多不建议开启）*/
+        'name' => __('实时搜索包含评论', 'aurore'),
+        'desc' => __('在实时搜索中搜索评论（如果网站评论数量太多不建议开启）', 'aurore'),
         'id' => 'live_search_comment',
         'std' => '0',
         'type' => 'checkbox'
     );
 
     $options[] = array(
-        'name' => __('Enable baguetteBox', 'aurore'),
-        /*启用 baguetteBox*/
-        'desc' => __('Default off，<a href="https://github.com/mashirozx/Sakura/wiki/Fancybox">please read wiki</a>', 'aurore'),
-        /*默认禁用，<a href="https://github.com/mashirozx/Sakura/wiki/Fancybox">请阅读说明</a>*/
+        'name' => __('启用 baguetteBox', 'aurore'),
+        'desc' => __('默认禁用，<a href="https://github.com/mashirozx/Sakura/wiki/Fancybox">请阅读说明</a>', 'aurore'),
         'id' => 'image_viewer',
         'std' => '0',
         'type' => 'checkbox'
     );
 
     $options[] = array(
-        'name' => __('Enable lazyload in posts', 'aurore'),
-        /*文章内图片启用 lazyload*/
-        'desc' => __('Default on', 'aurore'),
-        /*默认启用*/
+        'name' => __('文章内图片启用 lazyload', 'aurore'),
+        'desc' => __('默认启用', 'aurore'),
         'id' => 'lazyload',
         'std' => '1',
         'type' => 'checkbox'
     );
 
     $options[] = array(
-        'name' => __('lazyload spinner', 'aurore'),
-        'desc' => __('The placeholder to display when the image loads, fill in the image url', 'aurore'),
-        /*图片加载时要显示的占位图，填写图片 url*/
+        'name' => __('占位图', 'aurore'),
+        'desc' => __('图片加载时要显示的占位图，填写图片 url', 'aurore'),
         'id' => 'lazyload_spinner',
         'std' => 'https://cdn.jsdelivr.net/gh/moezx/cdn@3.0.2/img/svg/loader/trans.ajax-spinner-preloader.svg',
         'type' => 'text'
     );
 
     $options[] = array(
-        'name' => __('Whether to enable the clipboard copyright', 'aurore'),
-        /*是否开启剪贴板版权标识*/
-        'desc' => __('Automatically add a copyright to the clipboard when copying more than 30 bytes, which is enabled by default.', 'aurore'),
-        /*复制超过30个字节时自动向剪贴板添加版权标识，默认开启*/
+        'name' => __('是否开启剪贴板版权标识', 'aurore'),
+        'desc' => __('复制超过30个字节时自动向剪贴板添加版权标识，默认开启', 'aurore'),
         'id' => 'clipboard_copyright',
         'std' => '1',
         'type' => 'checkbox'
     );
 
     $options[] = array(
-        'name' => __('Email address prefix', 'aurore'),
-        /*发件地址前缀*/
-        'desc' => __('For sending system mail, the sender address displayed in the user\'s mailbox, do not use Chinese, the default system email address is bibi@your_domain_name', 'aurore'),
-        /*用于发送系统邮件，在用户的邮箱中显示的发件人地址，不要使用中文，默认系统邮件地址为 bibi@你的域名*/
+        'name' => __('发件地址前缀', 'aurore'),
+        'desc' => __('用于发送系统邮件，在用户的邮箱中显示的发件人地址，不要使用中文，默认系统邮件地址为 bibi@你的域名', 'aurore'),
         'id' => 'mail_user_name',
         'std' => 'bibi',
         'type' => 'text'

@@ -1,15 +1,3 @@
-@charset "utf-8";
-/*
-Theme Name: Aurore
-Theme URI: https://github.com/yeyufan1996/Aurore
-Author: Suran,Mashiro, Spirit, Louie, Fuzzz
-Author URI: https://yeyufan.cn
-Description: A wonderful branch of theme Sakura
-Version: 1.1
-Text Domain: Aurore
-Tags: 夜与凡
-*/
-
 #content {
   animation: main 1s;
 }
@@ -144,7 +132,7 @@ template {
 a {
   background-color: transparent;
   text-decoration: none;
-  cursor: url(https://cdn.yeyufan.cn/blog/cur/link.cur), auto;
+  cursor: url(https://fastly.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/ayuda.cur),auto;
 }
 
 a:active,
@@ -153,7 +141,7 @@ a:hover {
 }
 
 a:active {
-  cursor: url(https://cdn.yeyufan.cn/blog/cur/alternate.cur), alias;
+  cursor: url(https://fastly.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/work.cur),alias;
 }
 
 abbr[title] {
@@ -336,7 +324,7 @@ h6 {
 
 p {
   margin-bottom: 1.5em;
-  cursor: url(https://cdn.yeyufan.cn/blog/cur/Normal.cur), auto;
+  cursor: url(https://fastly.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/texto.cur),auto;
 }
 
 cite,
@@ -432,7 +420,7 @@ html {
 body {
   background: #fff;
   background-attachment: fixed;
-  cursor: url(https://cdn.yeyufan.cn/blog/cur/Normal.cur), auto;
+  cursor: url(https://fastly.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/normal.cur),auto;
 }
 
 blockquote:after,
@@ -697,15 +685,15 @@ a:hover {
 
 .loadvideo,
 .video-play {
-  background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/play@32x32.png);
+  background-image: url(https://fastly.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/play@32x32.png);
 }
 
 .video-pause {
-  background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/pause@32x32.png);
+  background-image: url(https://fastly.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/pause@32x32.png);
 }
 
 #video-add {
-  background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/add@32x32.png);
+  background-image: url(https://fastly.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/add@32x32.png);
   bottom: 45px;
   display: none;
 }
@@ -1843,12 +1831,13 @@ h1.page-title.mb- {
   z-index: 99;
   width: 70px;
   height: 900px;
-  background: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/scroll.png)
+  background: url(https://fastly.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/scroll.png)
     no-repeat center;
   background-size: contain;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
-  cursor: url(https://cdn.yeyufan.cn/blog/cur/unavailable.cur), auto;
+  cursor: url(https://fastly.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/No_Disponible.cur),
+    auto;
   opacity: 1;
 }
 
@@ -2559,7 +2548,7 @@ h1.page-title.mb- {
   height: 40px;
   text-align: center;
   line-height: 45px;
-  background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/disqus-preloader.svg);
+  background-image: url(https://fastly.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/disqus-preloader.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: auto 100%;
@@ -4222,7 +4211,7 @@ i.iconfont.js-toggle-search.iconsearch {
   visibility: visible;
   opacity: 0.99;
   animation: elastic 0.5s;
-  background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.2.1/img/other/iloli.gif);
+  background-image: url(https://fastly.jsdelivr.net/gh/moezx/cdn@3.2.1/img/other/iloli.gif);
   background-repeat: no-repeat;
   background-position: bottom right;
 }
@@ -4397,7 +4386,7 @@ body.dark .ins-section .fa {
 .ins-section .ins-section-header,
 .ins-section .ins-search-item {
   padding: 8px 15px;
-  cursor: url(https://cdn.yeyufan.cn/blog/cur/unavailable.cur), auto;
+  cursor: url(https://fastly.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/ayuda.cur),auto;
 }
 
 .ins-section .ins-search-item .search-keyword {
@@ -4433,7 +4422,7 @@ body.dark .ins-section .fa {
   font-size: 12px;
   color: #9a9a9a;
   margin: 5px 0 0 0px;
-  cursor: url(https://cdn.yeyufan.cn/blog/cur/unavailable.cur), auto;
+  cursor: url(https://fastly.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/ayuda.cur),auto;
 }
 
 .ins-section .ins-search-item:hover,
@@ -5059,7 +5048,7 @@ i.iconfont.down {
 
 #pagination .loading,
 #bangumi-pagination .loading {
-  background: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/wordpress-rotating-ball-o.svg);
+  background: url(https://fastly.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/wordpress-rotating-ball-o.svg);
   background-position: center;
   background-repeat: no-repeat;
   color: #555;
@@ -5950,7 +5939,7 @@ body.dark .user-menu-option a:hover {
 .oshimai {
   height: 2em;
   width: 6.11em;
-  background: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/oshimai.svg);
+  background: url(https://fastly.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/oshimai.svg);
   background-size: cover;
   margin: 0 auto;
 }
@@ -6121,7 +6110,7 @@ body.dark .user-menu-option a:hover {
   border: 0;
   color: #fff;
   line-height: 1;
-  cursor: url(https://cdn.yeyufan.cn/blog/cur/unavailable.cur), auto;
+  cursor: url(https://fastly.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/No_Disponible.cur),auto;
   font-size: 14px;
   font-weight: 500;
   padding: 7px 15px;
@@ -8168,7 +8157,7 @@ a.toc-link {
   padding: 2px;
   text-shadow: none;
   border-radius: 0 0 5px 5px;
-  cursor: url(https://cdn.yeyufan.cn/blog/cur/link.cur), auto;
+  cursor: url(https://fastly.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/texto.cur),auto;
 }
 
 .highlight-wrap code[data-rel]:before {
