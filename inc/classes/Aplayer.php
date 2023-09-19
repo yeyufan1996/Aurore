@@ -13,7 +13,7 @@ class Aplayer
         $this->server = akina_option('aplayer_server');
         $this->playlist_id = akina_option('aplayer_playlistid');
         $this->cookies = akina_option('aplayer_cookie');
-        $this->api_url = rest_url('sakura/v1/meting/aplayer');
+        $this->api_url = rest_url('aurore/v1/meting/aplayer');
         require('Meting.php');
     }
 
@@ -21,7 +21,7 @@ class Aplayer
         $server = $this->server;
         $cookies = $this->cookies;
         $playlist_id = $this->playlist_id;
-        $api = new \Sakura\API\Meting($server);
+        $api = new \Aurore\API\Meting($server);
         if (!empty($cookies) && $server === "netease") $api->cookie($cookies);
         switch ($type) {
             case 'song':
@@ -29,10 +29,6 @@ class Aplayer
                 $data = json_decode($data, true)["url"];
                 $data = $this->song_url($data);
                 break;
-            // case 'album':
-            //     $data = $api->format(true)->album($id);
-            //     $data=json_decode($data, true)["url"];
-            //     break;
             case 'playlist':
                 $data = $api->format(true)->playlist($playlist_id);
                 $data = $this->format_playlist($data);
@@ -45,10 +41,6 @@ class Aplayer
                 $data = $api->format(true)->pic($id);
                 $data = json_decode($data, true)["url"];
                 break;
-            // case 'search':
-            //     $data = $api->format(true)->search($id);
-            //     $data=json_decode($data, true);
-            //     break;
             default:
                 $data = $api->format(true)->url($id);
                 $data = json_decode($data, true)["url"];

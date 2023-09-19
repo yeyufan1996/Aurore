@@ -49,7 +49,7 @@ if ( akina_option('theme_skin') ) { ?>
     background:rgba(255,255,255,<?php echo akina_option('sakura_skin_alpha','') ?>);
 }
 
-<?php if(akina_option('entry_content_theme') == "sakura"){ ?>
+<?php if(akina_option('entry_content_theme') == "aurore"){ ?>
 .entry-content th {
     background-color: <?php echo akina_option('theme_skin'); ?>
 }

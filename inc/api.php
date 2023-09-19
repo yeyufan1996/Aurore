@@ -79,7 +79,7 @@ function upload_image(WP_REST_Request $request) {
         $result->set_headers(array('Content-Type' => 'application/json'));
         return $result;
     }
-    $images = new \Sakura\API\Images();
+    $images = new \Aurore\API\Images();
     switch (akina_option("img_upload_api")) {
         case 'imgur':
             $image = file_get_contents($_FILES["cmt_img_file"]["tmp_name"]);
@@ -227,7 +227,7 @@ function bgm_bilibili() {
         $response = new WP_REST_Response($output, 403);
     } else {
         $page = $_GET["page"] ?: 2;
-        $bgm = new \Sakura\API\Bilibili();
+        $bgm = new \Aurore\API\Bilibili();
         $html = preg_replace("/\s+|\n+|\r/", ' ', $bgm->get_bgm_items($page));
         $response = new WP_REST_Response($html, 200);
     }

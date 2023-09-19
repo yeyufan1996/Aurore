@@ -413,6 +413,14 @@ function optionsframework_options()
     );
 
     $options[] = array(
+        'name' => __('是否开启一言', 'aurore'),
+        'desc' => __('默认关闭，勾选开启', 'aurore'),
+        'id' => 'hitokoto_enable',
+        'std' => '0',
+        'type' => 'checkbox'
+    );
+
+    $options[] = array(
         'name' => __('社交信息样式', 'aurore'),
         'id' => 'social_style',
         'std' => "v2",

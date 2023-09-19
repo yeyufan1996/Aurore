@@ -713,7 +713,7 @@ function akina_body_classes($classes)
     //$classes[] = 'serif';
     //}
     $classes = array();
-    $classes[] = $_COOKIE['dark' . akina_option('cookie_version', '')] == '1' ? 'dark' : ' ';
+    //$classes[] = $_COOKIE['dark' . akina_option('cookie_version', '')] == '1' ? 'dark' : ' ';
     return $classes;
 }
 add_filter('body_class', 'akina_body_classes');

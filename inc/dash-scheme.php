@@ -1,8 +1,4 @@
 <?php
-/*
- * https://2heng.xin/wp-content/themes/Sakura/inc/dash-schame.php?color_1=&color_2=&color_3=&color_4=
- */
-
 ini_set('display_errors', true);
 error_reporting(E_ALL);
 

@@ -67,7 +67,7 @@ EOS;
                     "link" => get_comment_link($comment),
                     "title" => get_the_title($comment->comment_post_ID),
                     "comments" => "",
-                    "text" => $is_private ? ($comment->comment_author . ": " . __('The comment is private', 'sakura')) : str_replace($vowels, ' ', preg_replace($regex, ' ', $comment->comment_author . "：" . $comment->comment_content))
+                    "text" => $is_private ? ($comment->comment_author . ": " . __('私密评论', 'aurore')) : str_replace($vowels, ' ', preg_replace($regex, ' ', $comment->comment_author . "：" . $comment->comment_content))
                 );
             }
         }
