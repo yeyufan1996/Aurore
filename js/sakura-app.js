@@ -2382,7 +2382,7 @@ $(function () {
     "color: #ffffff; background: #0092ee; padding:5px 0;border-radius:5px;"
   ),
     console.log(
-      "\n %c 鈿heme:Sakura Author's Blog:https://2heng.xin/  Mod By Suran  \n\n",
+      "\n %cTheme:Sakura Author's Blog:https://blog.yeyufan.cn/  \n\n",
       "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;"
     );
   var logo = "%c💤Suran'%cBlog";
