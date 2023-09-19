@@ -67,7 +67,7 @@ if (akina_option('general_disqus_plugin_support')) {
 		</script>
 		<p style="font-family: 'Ubuntu', sans-serif;">
 			<span style="color: #b9b9b9;">
-				Theme Sakura <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i>
+				Theme <a href="https://github.com/yeyufan1996/Aurore" target="_blank">Aurore</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i>
 				by Mashiro
 				& Mod by <a href="https://yeyufan.cn/" target="_blank"
 					style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Suran</a></br>
