@@ -23,6 +23,7 @@ Tags: Suran
 }
 .header-user-avatar,.searchbox,.site-top .lower {
 	animation:searchbox 1s
+	
 }
 .comments,.notice,.post-list,.post-list-thumb,.top-feature {
 	animation:main .6s
@@ -768,9 +769,9 @@ a:active,a:hover {
 	display:none
 }
 .site-top .lower {
-	position:relative;
+	/*position:relative;*/
 	display:inline-block;
-	margin:15px 0 0 10px;
+	margin:13px 0 0 325px;
 	font-size:16px;
 	left:-50%;
 	pointer-events:auto !important;
